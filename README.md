@@ -4,7 +4,7 @@
 
 ## 📌 Sobre o projeto
 
-Este é um projeto **acadêmico, sem fins comerciais**, de uma página institucional para o **Flor de Sal Hotel** (apresentado no rodapé também como *Casablanca Beach Resort & Spa*). O objetivo é demonstrar o conceito de um resort de luxo à beira-mar, servindo como material de apoio visual para o trabalho do grupo de arquitetura.
+Este é um projeto **acadêmico, sem fins comerciais**, de uma página institucional para o **Flor de Sal Hotel**. O objetivo é demonstrar o conceito de um resort de luxo à beira-mar, servindo como material de apoio visual para o trabalho do grupo de arquitetura.
 
 O site é **estatico** (HTML, CSS e JavaScript puros, sem dependências de build), criado por **uma única pessoa do grupo** — o administrador deste repositório — responsável apenas pela parte **web/site** do projeto.
 
