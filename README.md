@@ -28,7 +28,7 @@ O site é **estatico** (HTML, CSS e JavaScript puros, sem dependências de build
 ## 📁 Estrutura
 
 ```
-jordana/
+main/
 ├── index.html          # Página principal (única)
 ├── carrossel-1.jpg
 ├── carrossel-2.jpg
