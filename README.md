@@ -59,7 +59,7 @@ python3 -m http.server 8080
 
 E acesse `http://localhost:8080`.
 
-## ⚠️ Considerações
+##  Considerações
 
 - **Conteúdo fictício:** nomes de contato, telefone, e-mail e descrições são **imaginários**, criados apenas para fins de demonstração acadêmica.
 - **Imagens:** são materiais ilustrativos de uso no trabalho do grupo.
@@ -67,8 +67,10 @@ E acesse `http://localhost:8080`.
 
 ## 👥 Créditos
 
-- **Site (front-end/HTML/CSS/JS):** responsável por este GitHub
-- **Conceito e trabalho arquitetônico:** demais integrantes do grupo (não presentes neste repositório)
+- **Site (front-end/HTML/CSS/JS):** Thiago Geovane - thiagogeovane12@gmail.com
+- **Conceito e trabalho arquitetônico:** Jordana Fernandes - jordana.jesus@alunos.ufersa.edu.br
+  Maíra Hemelly - maira.rodrigues@alunos.ufersa.edu.br
+  Thifany Lima - thifany.silva@alunos.ufersa.edu.br
 
 ---
 
