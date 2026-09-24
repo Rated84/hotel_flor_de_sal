@@ -373,6 +373,150 @@
             #quartos { border-radius: 20px !important; padding: 40px 16px !important; margin-top: 24px !important; }
             #quartos .room-card { border-radius: 12px; }
         }
+
+        /* --- IDENTIDADE VISUAL FLOR DE SAL --- */
+        :root {
+            --bg-light: #f7f4ed;
+            --text-dark: #18333a;
+            --text-muted: #687a78;
+            --ocean-blue: #176c70;
+            --ocean-hover: #10575b;
+            --tropical-teal: #b1784b;
+            --card-bg: #fffefa;
+            --border-color: #e8e2d6;
+        }
+
+        body {
+            background: #f7f4ed;
+            background-image: radial-gradient(ellipse at 85% 5%, rgba(205, 222, 212, .42), transparent 34%);
+            color: var(--text-dark);
+        }
+
+        .container { max-width: 1280px; padding-top: 92px; padding-bottom: 92px; }
+        .grid-hero { min-height: 76vh; gap: clamp(36px, 6vw, 88px); }
+        .text-column { position: relative; z-index: 2; }
+        .badge {
+            background: #e9f0e9;
+            border: 1px solid #d5e2d8;
+            color: #456b5d;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            font-size: .7rem;
+            padding: 10px 16px;
+        }
+        .badge::after { content: "Refúgio à beira-mar"; }
+        .badge i { width: 16px; height: 16px; }
+        h1 { margin: 8px 0 22px; line-height: 1; }
+        h1 img { max-width: 100%; object-fit: contain; }
+        p.description { color: #667774; font-size: 1.08rem; line-height: 1.9; max-width: 440px; }
+        .btn {
+            border-radius: 3px;
+            background: var(--ocean-blue);
+            box-shadow: 0 12px 24px rgba(23, 108, 112, .17);
+            letter-spacing: .025em;
+            padding: 16px 25px;
+        }
+        .btn:hover { background: var(--ocean-hover); box-shadow: 0 16px 28px rgba(23, 108, 112, .24); }
+        .carousel-container {
+            height: min(590px, 68vh);
+            min-height: 390px;
+            border-radius: 180px 180px 8px 8px;
+            box-shadow: 0 32px 70px rgba(30, 57, 53, .16);
+        }
+        .carousel-slide img { filter: saturate(.88); }
+        .carousel-btn { background: rgba(255, 254, 250, .88); color: var(--text-dark); }
+        .dot { border: 1px solid rgba(255,255,255,.9); }
+        .section-title { font-size: clamp(2rem, 3.2vw, 2.8rem); font-weight: 600; letter-spacing: -.035em; }
+        .section-subtitle { color: #778580; margin-bottom: 48px; }
+        .cards-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+        .card {
+            position: relative;
+            min-height: 245px;
+            border: 1px solid rgba(218, 214, 201, .7);
+            border-radius: 4px;
+            padding: 38px 30px 42px;
+            box-shadow: 0 12px 32px rgba(34, 51, 46, .045);
+            text-align: left;
+            overflow: hidden;
+        }
+        .card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: #b1784b; transform: scaleY(0); transform-origin: bottom; transition: transform .3s ease; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 22px 42px rgba(34, 51, 46, .09); }
+        .card:hover::before { transform: scaleY(1); }
+        .card-icon { background: #f2eee4; color: #a46d43; border-radius: 2px; margin: 0 0 24px; }
+        .card h3 { margin-bottom: 12px; }
+        .card p { line-height: 1.75; }
+        .card h3, .room-info h3 { color: #25434a; }
+        #quartos, section[style*="background-color: #f1f5f9"] {
+            background: #eeeee6 !important;
+            border: 1px solid rgba(218, 214, 201, .55);
+            border-radius: 5px !important;
+        }
+        #quartos { margin-top: 34px !important; }
+        .rooms-list {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 24px;
+        }
+        .room-card {
+            border-radius: 4px;
+            box-shadow: 0 14px 34px rgba(34, 51, 46, .08);
+        }
+        .room-card:hover { transform: translateY(-5px); }
+        .room-img { height: 245px; filter: saturate(.9); }
+        .room-info { padding: 25px 24px 26px; }
+        .room-info h3 { min-height: 54px; display: flex; align-items: center; flex-wrap: wrap; font-size: 1.28rem; }
+        .room-info h3 img { max-width: 75px; object-fit: contain; }
+        .room-features {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px 22px;
+            color: #58776e;
+            font-size: .82rem;
+        }
+        .room-features span {
+            min-width: max-content;
+            display: flex;
+            align-items: center;
+            gap: 8px !important;
+            white-space: nowrap;
+        }
+        .room-features i { width: 15px; height: 15px; }
+        .room-features svg { flex: 0 0 15px; stroke-width: 1.8; }
+        .room-info .btn { box-shadow: none; }
+        .gallery-grid { grid-template-columns: 1.2fr 1fr 1fr; gap: 14px; }
+        .gallery-grid img { height: 290px; border-radius: 3px; transition: transform .45s, filter .45s; }
+        .gallery-grid img:hover { opacity: 1; transform: translateY(-4px); filter: saturate(1.08); }
+        footer { background: #18383d; color: #f8f4e9; padding: 58px 24px; margin-top: 56px; }
+        .contact-icon { background: rgba(255,255,255,.1); color: #d4b18a; }
+        .contact-item:hover { color: #e2bc91; }
+        .reveal { transition: opacity .7s ease, transform .7s ease; }
+        :focus-visible { outline: 3px solid #c58e60; outline-offset: 4px; }
+
+        @media (max-width: 992px) {
+            .container { padding-top: 64px; padding-bottom: 64px; }
+            .grid-hero { min-height: auto; }
+            .carousel-container { height: 470px; min-height: 0; border-radius: 130px 130px 5px 5px; }
+            .rooms-list { grid-template-columns: minmax(0, 1fr); }
+            .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 600px) {
+            .container { padding-top: 48px; padding-bottom: 48px; }
+            .grid-hero { gap: 22px; }
+            .carousel-container { height: 340px; border-radius: 100px 100px 4px 4px; }
+            .rooms-list { grid-template-columns: minmax(0, 1fr); }
+            .room-info h3 { min-height: 0; }
+            .room-features { gap: 11px 16px; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .card { min-height: 0; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-grid img { height: 190px; }
+            .gallery-grid img:first-child { grid-column: 1 / -1; height: 230px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+            .reveal { opacity: 1; transform: none; }
+        }
     </style>
 </head>
 <body>
@@ -413,7 +557,7 @@
                 </div>
                 <!-- Imagem 3 -->
                 <div class="carousel-slide">
-                    <img src="fotos/carrossel-3.jpg" alt="Fachada à noite">
+                    <img src="fotos/galeria-praia.jpg" alt="Praia do resort ao entardecer">
                 </div>
 
                 <!-- Botões de navegação -->
@@ -439,7 +583,7 @@
         <h2 class="section-title reveal">A Experiência Completa</h2>
         <p class="section-subtitle reveal">Tudo o que você precisa para relaxar e se desconectar.</p>
 
-        <div class="cards-grid">
+        <div class="cards-list">
             <div class="card reveal" style="transition-delay: 0.1s;">
                 <div class="card-icon"><i data-lucide="waves"></i></div>
                 <h3>Praia Privativa</h3>
@@ -475,7 +619,7 @@
                         <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="wifi"></i>Wi-fi</span>
                         <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="coffee"></i>Café incluso</span>
                         <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="tv"></i>TV</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="fridge"></i>Frigobar</span>
+                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="package"></i>Frigobar</span>
                         <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="airplay"></i>Ar-condicionado</span>
                     </div>
                     <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">Possui varanda privativa com vista para o mar, banheira.</p>
@@ -492,7 +636,7 @@
                         <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="wifi"></i> Wi-fi</span>
                         <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="coffee"></i> Café incluso</span>
                         <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="tv"></i>TV</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="fridge"></i>Frigobar</span>
+                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="package"></i>Frigobar</span>
                         <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="airplay"></i>Ar-condicionado</span>
                     </div>
                     <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">Possui varanda privativa, frigobar.</p>
@@ -508,7 +652,7 @@
                         <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="wifi"></i> Wi-fi</span>
                         <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="coffee"></i> Café incluso</span>
                         <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="tv"></i>TV</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="fridge"></i>Frigobar</span>
+                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="package"></i>Frigobar</span>
                         <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="airplay"></i>Ar-condicionado</span>
                     </div>
                     <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">Climatizado, possui varanda privativa com vista para o mar, banheira e frigobar.</p>
