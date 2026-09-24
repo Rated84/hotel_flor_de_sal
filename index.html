@@ -458,12 +458,23 @@
             gap: 24px;
         }
         .room-card {
+            display: grid;
+            grid-template-columns: minmax(280px, 38%) minmax(0, 1fr);
             border-radius: 4px;
+            border: 1px solid rgba(218, 214, 201, .7);
+            background: var(--card-bg);
             box-shadow: 0 14px 34px rgba(34, 51, 46, .08);
         }
         .room-card:hover { transform: translateY(-5px); }
-        .room-img { height: 245px; filter: saturate(.9); }
-        .room-info { padding: 25px 24px 26px; }
+        .room-gallery { position: relative; min-height: 100%; overflow: hidden; background: #e4e4da; }
+        .room-img { display: none; width: 100%; height: 100%; min-height: 320px; object-fit: cover; filter: saturate(.9); }
+        .room-img.is-active { display: block; animation: room-image-in .35s ease; }
+        @keyframes room-image-in { from { opacity: .65; } to { opacity: 1; } }
+        .room-gallery-controls { display: none; position: absolute; inset: auto 14px 14px; align-items: center; justify-content: space-between; pointer-events: none; }
+        .room-gallery.has-multiple .room-gallery-controls { display: flex; }
+        .room-gallery-controls button { width: 38px; height: 38px; border: 0; border-radius: 50%; background: rgba(255,254,250,.92); color: var(--text-dark); font-size: 1.2rem; cursor: pointer; pointer-events: auto; box-shadow: 0 4px 14px rgba(0,0,0,.15); }
+        .room-gallery-count { padding: 6px 10px; border-radius: 20px; color: white; background: rgba(24,51,58,.72); font-size: .78rem; }
+        .room-info { padding: 34px clamp(24px, 4vw, 52px); align-self: center; }
         .room-info h3 { min-height: 54px; display: flex; align-items: center; flex-wrap: wrap; font-size: 1.28rem; }
         .room-info h3 img { max-width: 75px; object-fit: contain; }
         .room-features {
@@ -506,6 +517,10 @@
             .carousel-container { height: 340px; border-radius: 100px 100px 4px 4px; }
             .rooms-list { grid-template-columns: minmax(0, 1fr); }
             .room-info h3 { min-height: 0; }
+            .room-card { grid-template-columns: 1fr; }
+            .room-gallery { min-height: 0; }
+            .room-img { height: 250px; min-height: 250px; }
+            .room-info { padding: 26px 22px; }
             .room-features { gap: 11px 16px; }
             .cards-grid { grid-template-columns: 1fr; }
             .card { min-height: 0; }
@@ -583,7 +598,7 @@
         <h2 class="section-title reveal">A Experiência Completa</h2>
         <p class="section-subtitle reveal">Tudo o que você precisa para relaxar e se desconectar.</p>
 
-        <div class="cards-list">
+        <div class="cards-grid">
             <div class="card reveal" style="transition-delay: 0.1s;">
                 <div class="card-icon"><i data-lucide="waves"></i></div>
                 <h3>Praia Privativa</h3>
@@ -609,7 +624,16 @@
 
         <div class="rooms-list">
             <div class="room-card reveal" style="transition-delay: 0.1s;">
-                <img src="fotos/salina.jpg" alt="Suíte Master" class="room-img">
+                <div class="room-gallery" aria-label="Fotos da acomodação Salina">
+                    <img src="fotos/salina.jpg" alt="Varanda da acomodação Salina com vista para o mar" class="room-img is-active">
+                    <img src="fotos/salina-2.jpg" alt="Detalhe da acomodação Salina — foto 2" class="room-img">
+                    <img src="fotos/salina-3.jpg" alt="Detalhe da acomodação Salina — foto 3" class="room-img">
+                    <div class="room-gallery-controls">
+                        <button type="button" data-gallery-step="-1" aria-label="Foto anterior">‹</button>
+                        <span class="room-gallery-count" aria-live="polite">1 / 1</span>
+                        <button type="button" data-gallery-step="1" aria-label="Próxima foto">›</button>
+                    </div>
+                </div>
                 <div class="room-info">
                     <h3><img src="fotos/logos/SALINA.png" alt="Logo Salina" style="height: 3rem; vertical-align: middle; margin-right: 8px;"> Salina
                     <span style="font-size: 0.85rem; color: var(--text-muted); margin-left: 8px;">(Salina)</span>
@@ -628,7 +652,16 @@
             </div>
 
             <div class="room-card reveal" style="transition-delay: 0.2s;">
-                <img src="fotos/bangalo-tropical.jpg" alt="Bangalô Tropical" class="room-img">
+                <div class="room-gallery" aria-label="Fotos da acomodação Maresia">
+                    <img src="fotos/bangalo-tropical.jpg" alt="Bangalô tropical da acomodação Maresia" class="room-img is-active">
+                    <img src="fotos/maresia-2.jpg" alt="Detalhe da acomodação Maresia — foto 2" class="room-img">
+                    <img src="fotos/maresia-3.jpg" alt="Detalhe da acomodação Maresia — foto 3" class="room-img">
+                    <div class="room-gallery-controls">
+                        <button type="button" data-gallery-step="-1" aria-label="Foto anterior">‹</button>
+                        <span class="room-gallery-count" aria-live="polite">1 / 1</span>
+                        <button type="button" data-gallery-step="1" aria-label="Próxima foto">›</button>
+                    </div>
+                </div>
                 <div class="room-info">
                     <h3><img src="fotos/logos/MARESIA.png" alt="Logo Maresia" style="height: 3rem; vertical-align: middle; margin-right: 8px;"> Quarto Maresia</h3>
                     <div class="room-features">
@@ -644,7 +677,16 @@
                 </div>
             </div>
             <div class="room-card reveal" style="transition-delay: 0.3s;">
-                <img src="fotos/quarto-luxo.jpg" alt="Suíte Luxo" class="room-img">
+                <div class="room-gallery" aria-label="Fotos da acomodação Duna">
+                    <img src="fotos/quarto-luxo.jpg" alt="Quarto da acomodação Duna" class="room-img is-active">
+                    <img src="fotos/duna-2.jpg" alt="Detalhe da acomodação Duna — foto 2" class="room-img">
+                    <img src="fotos/duna-3.jpg" alt="Detalhe da acomodação Duna — foto 3" class="room-img">
+                    <div class="room-gallery-controls">
+                        <button type="button" data-gallery-step="-1" aria-label="Foto anterior">‹</button>
+                        <span class="room-gallery-count" aria-live="polite">1 / 1</span>
+                        <button type="button" data-gallery-step="1" aria-label="Próxima foto">›</button>
+                    </div>
+                </div>
                 <div class="room-info">
                     <h3><img src="fotos/logos/DUNA.png" alt="Logo Duna" style="height: 3rem; vertical-align: middle; margin-right: 8px;"> Quarto Duna</h3>
                     <div class="room-features">
@@ -658,6 +700,7 @@
                     <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">Climatizado, possui varanda privativa com vista para o mar, banheira e frigobar.</p>
                     <a href="#contato" class="btn" style="width: 100%; justify-content: center; padding: 12px; font-size: 0.95rem;">Reservar Agora</a>
                 </div>   
+            </div>
         </div>
     </section>
 
@@ -697,6 +740,40 @@
     <!-- SCRIPT DO SITE -->
     <script>
         lucide.createIcons();
+
+        // Cada galeria mantém somente as imagens que existem e habilita o carrossel quando há mais de uma.
+        function initializeRoomGalleries() {
+            document.querySelectorAll('.room-gallery').forEach(gallery => {
+                const images = Array.from(gallery.querySelectorAll('.room-img'));
+                images.forEach(image => {
+                    if (!image.naturalWidth) image.remove();
+                });
+
+                const availableImages = Array.from(gallery.querySelectorAll('.room-img'));
+                const counter = gallery.querySelector('.room-gallery-count');
+                if (availableImages.length === 0) {
+                    gallery.hidden = true;
+                    return;
+                }
+
+                if (availableImages.length > 1) gallery.classList.add('has-multiple');
+                let activeIndex = Math.max(0, availableImages.findIndex(image => image.classList.contains('is-active')));
+
+                const showRoomImage = index => {
+                    activeIndex = (index + availableImages.length) % availableImages.length;
+                    availableImages.forEach((image, imageIndex) => image.classList.toggle('is-active', imageIndex === activeIndex));
+                    if (counter) counter.textContent = `${activeIndex + 1} / ${availableImages.length}`;
+                };
+
+                gallery.querySelectorAll('[data-gallery-step]').forEach(button => {
+                    button.addEventListener('click', () => showRoomImage(activeIndex + Number(button.dataset.galleryStep)));
+                });
+
+                showRoomImage(activeIndex);
+            });
+        }
+
+        window.addEventListener('load', initializeRoomGalleries);
 
         // LÓGICA DO CARROSSEL
         let slideIndex = 0;
