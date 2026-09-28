@@ -466,10 +466,9 @@
             box-shadow: 0 14px 34px rgba(34, 51, 46, .08);
         }
         .room-card:hover { transform: translateY(-5px); }
-        .room-gallery { position: relative; min-height: 100%; overflow: hidden; background: #e4e4da; }
-        .room-img { display: none; width: 100%; height: 100%; min-height: 320px; object-fit: cover; filter: saturate(.9); }
-        .room-img.is-active { display: block; animation: room-image-in .35s ease; }
-        @keyframes room-image-in { from { opacity: .65; } to { opacity: 1; } }
+        .room-gallery { position: relative; min-height: 320px; overflow: hidden; background: #e4e4da; }
+        .room-img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; min-height: 320px; object-fit: cover; filter: saturate(.9); opacity: 0; visibility: hidden; transition: opacity 1s ease, visibility 1s ease; }
+        .room-img.is-active { opacity: 1; visibility: visible; }
         .room-gallery-controls { display: none; position: absolute; inset: auto 14px 14px; align-items: center; justify-content: space-between; pointer-events: none; }
         .room-gallery.has-multiple .room-gallery-controls { display: flex; }
         .room-gallery-controls button { width: 38px; height: 38px; border: 0; border-radius: 50%; background: rgba(255,254,250,.92); color: var(--text-dark); font-size: 1.2rem; cursor: pointer; pointer-events: auto; box-shadow: 0 4px 14px rgba(0,0,0,.15); }
@@ -518,7 +517,7 @@
             .rooms-list { grid-template-columns: minmax(0, 1fr); }
             .room-info h3 { min-height: 0; }
             .room-card { grid-template-columns: 1fr; }
-            .room-gallery { min-height: 0; }
+            .room-gallery { min-height: 250px; }
             .room-img { height: 250px; min-height: 250px; }
             .room-info { padding: 26px 22px; }
             .room-features { gap: 11px 16px; }
@@ -758,6 +757,7 @@
 
                 if (availableImages.length > 1) gallery.classList.add('has-multiple');
                 let activeIndex = Math.max(0, availableImages.findIndex(image => image.classList.contains('is-active')));
+                let galleryTimer;
 
                 const showRoomImage = index => {
                     activeIndex = (index + availableImages.length) % availableImages.length;
@@ -765,11 +765,22 @@
                     if (counter) counter.textContent = `${activeIndex + 1} / ${availableImages.length}`;
                 };
 
+                const resetGalleryTimer = () => {
+                    clearInterval(galleryTimer);
+                    if (availableImages.length > 1) {
+                        galleryTimer = setInterval(() => showRoomImage(activeIndex + 1), 5000);
+                    }
+                };
+
                 gallery.querySelectorAll('[data-gallery-step]').forEach(button => {
-                    button.addEventListener('click', () => showRoomImage(activeIndex + Number(button.dataset.galleryStep)));
+                    button.addEventListener('click', () => {
+                        showRoomImage(activeIndex + Number(button.dataset.galleryStep));
+                        resetGalleryTimer();
+                    });
                 });
 
                 showRoomImage(activeIndex);
+                resetGalleryTimer();
             });
         }
 
