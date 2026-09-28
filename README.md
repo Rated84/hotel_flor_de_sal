@@ -3,11 +3,11 @@
 > **Aviso importante:** este repositório contém **apenas o site** do projeto. Trata-se de um trabalho **estudantil** desenvolvido por um **grupo de alunos de Arquitetura**, e o site aqui publicado foi criado **exclusivamente pelo responsável por este GitHub**. Os demais integrantes do grupo contribuíram com outras partes do trabalho (conceito arquitetônico, projetos e especificações), que **não** estão neste repositório.
 
 ## 📌 Sobre o projeto
-
+<div align="justify">
 Este é um projeto acadêmico, desenvolvido para uma disciplina de Projeto Arquitetônico e sem fins comerciais, referente à proposta institucional do **Hotel Flor de Sal. O objetivo é apresentar o conceito de um resort à beira-mar, utilizando recursos de representação arquitetônica como apoio visual ao trabalho do grupo e demonstrando, dentro do contexto acadêmico, como o projeto poderia ser percebido e apresentado caso fosse efetivamente construído. A proposta busca aproximar o conceito técnico e projetual da linguagem do mercado profissional e comercial, unindo soluções arquitetônicas, aspectos técnicos e representação visual realista para proporcionar uma compreensão mais próxima da experiência espacial e da apresentação de um empreendimento arquitetônico real.
 
 O site é **estatico** (HTML, CSS e JavaScript puros, sem dependências de build), criado por **uma única pessoa do grupo** — o administrador deste repositório — responsável apenas pela parte **web/site** do projeto.
-
+</div>
 ## 🖥️ Funcionalidades
 
 - Seção **hero** com carrossel de imagens (auto-play + navegação manual e indicadores)
