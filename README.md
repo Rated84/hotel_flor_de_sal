@@ -4,7 +4,7 @@
 
 ## 📌 Sobre o projeto
 
-Este é um projeto **acadêmico, sem fins comerciais**, de uma página institucional para o **Flor de Sal Hotel**. O objetivo é demonstrar o conceito de um resort de luxo à beira-mar, servindo como material de apoio visual para o trabalho do grupo de arquitetura.
+Este é um projeto acadêmico, desenvolvido para uma disciplina de Projeto Arquitetônico e sem fins comerciais, referente à proposta institucional do **Hotel Flor de Sal. O objetivo é apresentar o conceito de um resort à beira-mar, utilizando recursos de representação arquitetônica como apoio visual ao trabalho do grupo e demonstrando, dentro do contexto acadêmico, como o projeto poderia ser percebido e apresentado caso fosse efetivamente construído. A proposta busca aproximar o conceito técnico e projetual da linguagem do mercado profissional e comercial, unindo soluções arquitetônicas, aspectos técnicos e representação visual realista para proporcionar uma compreensão mais próxima da experiência espacial e da apresentação de um empreendimento arquitetônico real.
 
 O site é **estatico** (HTML, CSS e JavaScript puros, sem dependências de build), criado por **uma única pessoa do grupo** — o administrador deste repositório — responsável apenas pela parte **web/site** do projeto.
 
@@ -20,10 +20,10 @@ O site é **estatico** (HTML, CSS e JavaScript puros, sem dependências de build
 ## 🛠️ Tecnologias
 
 - HTML5
-- CSS3 (variáveis, grid, media queries)
-- JavaScript (carrossel e animações de scroll)
-- Ícones via [Lucide](https://lucide.dev/)
-- Fontes via Google Fonts (Playfair Display e Inter)
+- CSS3 
+- JavaScript 
+- Ícones via [Lucide]
+- Fontes via Google Fonts
 
 ## 📁 Estrutura
 
@@ -62,7 +62,7 @@ E acesse `http://localhost:8080`.
 ##  Considerações
 
 - **Conteúdo fictício:** nomes de contato, telefone, e-mail e descrições são **imaginários**, criados apenas para fins de demonstração acadêmica.
-- **Imagens:** são materiais ilustrativos de uso no trabalho do grupo.
+- **Imagens:** são materiais ilustrativos de uso no trabalho do grupo, geradas por meio de ferramentas de inteligência artificial (IA), a partir dos materiais feitos em softwares de softwares de modelagem 3D, desenho técnico e arquitetura.
 - **Abandono/uso educacional:** este repositório **não** deve ser usado para fins comerciais. Aceitamos indicações de melhorias no site, mas o projeto é exclusivamente estudantil.
 
 ## 👥 Créditos
