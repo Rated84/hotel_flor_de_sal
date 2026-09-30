@@ -3,876 +3,800 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flor de Sal Hotel | Luxo e Descanso</title>
-    <!-- Fontes e Ícones -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <meta name="theme-color" content="#f7f4ed">
     
-    <style>
-        :root {
-            --bg-light: #e8e9b6;
-            --text-dark: #1e293b;
-            --text-muted: #64748b;
-            --ocean-blue: #0284c7;
-            --ocean-hover: #0369a1;
-            --tropical-teal: #0d9488;
-            --card-bg: #ffffff;
-            --border-color: #e2e8f0;
-        }
+    <!-- SEO & Metadados -->
+    <title>Flor de Sal Hotel | Beach Resort & Spa — Costa Branca / RN</title>
+    <meta name="description" content="Flor de Sal Hotel: Conceito arquitetônico de resort contemporâneo à beira-mar na Costa Branca potiguar. Suítes exclusivas, arquitetura biofílica e gastronomia autoral.">
+    <meta name="author" content="Flor de Sal Hotel">
+    
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Flor de Sal Hotel | Beach Resort & Spa">
+    <meta property="og:description" content="Conceito arquitetônico de resort à beira-mar com suítes exclusivas inspiradas nas salinas da Costa Branca.">
+    <meta property="og:image" content="fotos/carrossel/carrossel-1.jpg">
+    <meta property="og:locale" content="pt_BR">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+    <!-- Tipografia Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .glow-effect {
-            position: fixed;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(2, 132, 199, 0.08) 0%, rgba(250, 249, 246, 0) 70%);
-            top: -300px;
-            left: -300px;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 24px;
-        }
-
-        /* --- SEÇÃO HERO --- */
-        .grid-hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: center;
-            min-height: 80vh;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #f0f9ff;
-            border: 1px solid #bae6fd;
-            padding: 8px 16px;
-            border-radius: 50px;
-            color: var(--ocean-blue);
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 24px;
-        }
-
-        h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            color: var(--text-dark);
-        }
-
-        .text-accent { color: var(--ocean-blue); }
-
-        p.description {
-            font-size: 1.125rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            max-width: 450px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background-color: var(--ocean-blue);
-            color: #fff;
-            text-decoration: none;
-            padding: 16px 32px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(2, 132, 199, 0.2);
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn:hover {
-            background-color: var(--ocean-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 15px 25px rgba(2, 132, 199, 0.3);
-        }
-
-        /* --- CARROSSEL (NOVO) --- */
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            height: 550px;
-            border-radius: 20px 20px 20px 80px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-        }
-
-        .carousel-slide {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-            z-index: 1;
-        }
-
-        .carousel-slide.active {
-            opacity: 1;
-            z-index: 2;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Botões do Carrossel */
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.7);
-            border: none;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 3;
-            color: var(--text-dark);
-            transition: all 0.3s;
-            backdrop-filter: blur(4px);
-        }
-
-        .carousel-btn:hover {
-            background: white;
-            color: var(--ocean-blue);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .prev-btn { left: 16px; }
-        .next-btn { right: 16px; }
-
-        /* Indicadores (Bolinhas) */
-        .carousel-indicators {
-            position: absolute;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 12px;
-            z-index: 3;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .dot.active {
-            background: white;
-            transform: scale(1.4);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        /* --- TÍTULOS E CARDS --- */
-        .section-title {
-            text-align: center;
-            font-size: 2.75rem;
-            margin-bottom: 16px;
-        }
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 56px;
-            font-size: 1.1rem;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 40px 32px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            transition: all 0.4s ease;
-            text-align: center;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-        }
-
-        .card-icon {
-            width: 64px;
-            height: 64px;
-            background: #f0fdfa;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--tropical-teal);
-            margin: 0 auto 24px auto;
-        }
-
-        .card h3 { font-size: 1.5rem; margin-bottom: 12px; }
-        .card p { color: var(--text-muted); font-size: 1rem; }
-
-        /* --- QUARTOS E GALERIA --- */
-        .rooms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .room-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-
-        .room-card:hover { transform: translateY(-5px); }
-        .room-img { width: 100%; height: 250px; object-fit: cover; }
-        .room-info { padding: 24px; }
-        .room-info h3 { font-size: 1.5rem; margin-bottom: 8px; }
-        
-        .room-features {
-            display: flex;
-            gap: 16px;
-            color: var(--tropical-teal);
-            margin-bottom: 16px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        .room-features i { width: 16px; height: 16px; }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-        .gallery-grid img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 12px;
-            transition: opacity 0.3s;
-        }
-        .gallery-grid img:hover { opacity: 0.8; }
-
-        /* --- RODAPÉ --- */
-        footer {
-            background: #000000;
-            color: #147a90;
-            padding: 60px 24px;
-            margin-top: 80px;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 32px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #cbd5e1;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .contact-item:hover { color: #38bdf8; }
-        .contact-icon {
-            padding: 10px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-        }
-
-        /* --- ANIMAÇÕES DE SCROLL --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* --- RESPONSIVIDADE --- */
-        @media (max-width: 992px) {
-            .container { padding: 60px 24px; }
-            .grid-hero { grid-template-columns: 1fr; text-align: center; gap: 32px; padding-top: 20px; }
-            .badge { margin: 0 auto 24px auto; }
-            p.description { margin: 0 auto 40px auto; max-width: 550px; }
-            h1 { font-size: 3rem; }
-            .carousel-container { height: 450px; border-radius: 20px; }
-            .section-title { font-size: 2.25rem; }
-            .section-subtitle { margin-bottom: 40px; padding: 0 16px; }
-            .rooms-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-            .room-features { flex-wrap: wrap; }
-            .gallery-grid { grid-template-columns: 1fr 1fr; }
-            .footer-content { flex-direction: column; text-align: center; }
-            #quartos { padding: 60px 24px !important; border-radius: 28px !important; }
-        }
-        @media (max-width: 768px) {
-            .container { padding: 48px 20px; }
-            h1 { font-size: 2.5rem; }
-            h1 img { height: 10rem !important; }
-            .carousel-container { height: 340px; }
-            .carousel-btn { width: 38px; height: 38px; }
-            .cards-grid { grid-template-columns: 1fr; }
-            .section-title { font-size: 2rem; }
-            .room-info p { padding: 0; }
-            .room-features { gap: 12px 16px; }
-            #quartos { padding: 48px 20px !important; border-radius: 24px !important; }
-        }
-        @media (max-width: 480px) {
-            .container { padding: 40px 16px; }
-            h1 { font-size: 2rem; }
-            .carousel-container { height: 260px; }
-            .btn { width: 100%; justify-content: center; }
-            .gallery-grid { grid-template-columns: 1fr; }
-            .gallery-grid img { height: 220px; }
-            .card { padding: 32px 24px; }
-            .footer-content { gap: 24px; }
-            .contact-item { font-size: 0.9rem; }
-            h1 img { height: 7.5rem !important; }
-            #quartos { border-radius: 20px !important; padding: 40px 16px !important; margin-top: 24px !important; }
-            #quartos .room-card { border-radius: 12px; }
-        }
-
-        /* --- IDENTIDADE VISUAL FLOR DE SAL --- */
-        :root {
-            --bg-light: #f7f4ed;
-            --text-dark: #18333a;
-            --text-muted: #687a78;
-            --ocean-blue: #176c70;
-            --ocean-hover: #10575b;
-            --tropical-teal: #b1784b;
-            --card-bg: #fffefa;
-            --border-color: #e8e2d6;
-        }
-
-        body {
-            background: #f7f4ed;
-            background-image: radial-gradient(ellipse at 85% 5%, rgba(205, 222, 212, .42), transparent 34%);
-            color: var(--text-dark);
-        }
-
-        .container { max-width: 1280px; padding-top: 92px; padding-bottom: 92px; }
-        .grid-hero { display: block; position: relative; min-height: 86vh; }
-        .text-column { position: absolute; z-index: 4; top: 50%; left: clamp(20px, 5vw, 72px); width: min(470px, 43%); transform: translateY(-50%); padding: clamp(28px, 4vw, 52px); border: 1px solid rgba(255,255,255,.58); border-radius: 8px; background: rgba(255,254,250,.48); box-shadow: 0 20px 60px rgba(30,57,53,.16), inset 0 1px 0 rgba(255,255,255,.65); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
-        .badge {
-            background: #e9f0e9;
-            border: 1px solid #d5e2d8;
-            color: #456b5d;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-            font-size: .7rem;
-            padding: 10px 16px;
-        }
-        .badge::after { content: "Refúgio à beira-mar"; }
-        .badge i { width: 16px; height: 16px; }
-        h1 { margin: 8px 0 22px; line-height: 1; }
-        h1 img { max-width: 100%; object-fit: contain; }
-        p.description { color: #667774; font-size: 1.08rem; line-height: 1.9; max-width: 440px; }
-        .btn {
-            border-radius: 3px;
-            background: var(--ocean-blue);
-            box-shadow: 0 12px 24px rgba(23, 108, 112, .17);
-            letter-spacing: .025em;
-            padding: 16px 25px;
-        }
-        .btn:hover { background: var(--ocean-hover); box-shadow: 0 16px 28px rgba(23, 108, 112, .24); }
-        .carousel-container {
-            height: min(800px, 86vh);
-            min-height: 560px;
-            border-radius: 6px;
-            box-shadow: 0 32px 70px rgba(30, 57, 53, .16);
-        }
-        .carousel-slide img { filter: saturate(.88); }
-        .carousel-btn { background: rgba(255, 254, 250, .88); color: var(--text-dark); }
-        .dot { border: 1px solid rgba(255,255,255,.9); }
-        .section-title { font-size: clamp(2rem, 3.2vw, 2.8rem); font-weight: 600; letter-spacing: -.035em; }
-        .section-subtitle { color: #778580; margin-bottom: 48px; }
-        .cards-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
-        .card {
-            position: relative;
-            min-height: 245px;
-            border: 1px solid rgba(218, 214, 201, .7);
-            border-radius: 4px;
-            padding: 38px 30px 42px;
-            box-shadow: 0 12px 32px rgba(34, 51, 46, .045);
-            text-align: left;
-            overflow: hidden;
-        }
-        .card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: #b1784b; transform: scaleY(0); transform-origin: bottom; transition: transform .3s ease; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 22px 42px rgba(34, 51, 46, .09); }
-        .card:hover::before { transform: scaleY(1); }
-        .card-icon { background: #f2eee4; color: #a46d43; border-radius: 2px; margin: 0 0 24px; }
-        .card h3 { margin-bottom: 12px; }
-        .card p { line-height: 1.75; }
-        .card h3, .room-info h3 { color: #25434a; }
-        #quartos, section[style*="background-color: #f1f5f9"] {
-            background: #eeeee6 !important;
-            border: 1px solid rgba(218, 214, 201, .55);
-            border-radius: 5px !important;
-        }
-        #quartos { margin-top: 34px !important; }
-        .rooms-list {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr);
-            gap: 24px;
-        }
-        .room-card {
-            display: grid;
-            grid-template-columns: minmax(360px, 48%) minmax(0, 1fr);
-            border-radius: 4px;
-            border: 1px solid rgba(218, 214, 201, .7);
-            background: var(--card-bg);
-            box-shadow: 0 14px 34px rgba(34, 51, 46, .08);
-        }
-        .room-card:hover { transform: translateY(-5px); }
-        .room-tabs { display: flex; justify-content: center; gap: 10px; margin: 0 auto 30px; border-bottom: 1px solid rgba(24,51,58,.16); }
-        .room-tab { position: relative; padding: 14px 24px; border: 0; background: transparent; color: #687a78; font: inherit; font-weight: 600; cursor: pointer; }
-        .room-tab::after { content: ''; position: absolute; right: 18px; bottom: -1px; left: 18px; height: 2px; background: #176c70; transform: scaleX(0); transition: transform .2s ease; }
-        .room-tab:hover, .room-tab[aria-selected="true"] { color: #176c70; }
-        .room-tab[aria-selected="true"]::after { transform: scaleX(1); }
-        .room-card[hidden] { display: none; }
-        .references-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 22px; }
-        .reference-card { padding: 30px; border: 1px solid rgba(218,214,201,.7); background: rgba(255,254,250,.72); backdrop-filter: blur(14px); box-shadow: 0 12px 32px rgba(34,51,46,.05); }
-        .reference-card blockquote { color: #526a66; line-height: 1.8; margin: 14px 0 22px; }
-        .reference-card cite { color: #25434a; font-style: normal; font-weight: 600; }
-        .reference-stars { color: #b1784b; letter-spacing: .15em; }
-        .room-gallery { position: relative; min-height: 410px; overflow: hidden; background: #e4e4da; }
-        .room-img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; min-height: 410px; object-fit: cover; filter: saturate(.9); opacity: 0; visibility: hidden; transition: opacity 1s ease, visibility 1s ease; }
-        .room-img.is-active { opacity: 1; visibility: visible; }
-        .room-gallery-controls { display: none; position: absolute; inset: auto 14px 14px; align-items: center; justify-content: space-between; pointer-events: none; }
-        .room-gallery.has-multiple .room-gallery-controls { display: flex; }
-        .room-gallery-controls button { width: 38px; height: 38px; border: 0; border-radius: 50%; background: rgba(255,254,250,.92); color: var(--text-dark); font-size: 1.2rem; cursor: pointer; pointer-events: auto; box-shadow: 0 4px 14px rgba(0,0,0,.15); }
-        .room-gallery-count { padding: 6px 10px; border-radius: 20px; color: white; background: rgba(24,51,58,.72); font-size: .78rem; }
-        .room-info { position: relative; align-self: center; margin: 20px; padding: 34px clamp(24px, 4vw, 52px); border: 1px solid rgba(255,255,255,.92); background: linear-gradient(135deg, rgba(255,255,255,.78), rgba(201,226,216,.52)); box-shadow: 0 18px 42px rgba(24,51,58,.13), inset 0 1px 0 rgba(255,255,255,.95), inset 0 -1px 0 rgba(255,255,255,.3); backdrop-filter: blur(24px) saturate(170%); -webkit-backdrop-filter: blur(24px) saturate(170%); }
-        .room-info h3 { min-height: 54px; display: flex; align-items: center; flex-wrap: wrap; font-size: 1.28rem; }
-        .room-info h3 img { max-width: 75px; object-fit: contain; }
-        .room-features {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 12px 22px;
-            color: #58776e;
-            font-size: .82rem;
-        }
-        .room-features span {
-            min-width: max-content;
-            display: flex;
-            align-items: center;
-            gap: 8px !important;
-            white-space: nowrap;
-        }
-        .room-features i { width: 15px; height: 15px; }
-        .room-features svg { flex: 0 0 15px; stroke-width: 1.8; }
-        .room-info .btn { box-shadow: none; }
-        .gallery-grid { display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 14px; scrollbar-color: #b1784b #e8e2d6; }
-        .gallery-grid img { flex: 0 0 190px; width: 190px; height: 230px; min-width: 0; border-radius: 3px; transition: flex-basis .4s ease, filter .4s ease; }
-        .gallery-grid img:hover, .gallery-grid img:focus { flex-basis: 360px; opacity: 1; filter: saturate(1.08); }
-        footer { background: #18383d; color: #f8f4e9; padding: 58px 24px; margin-top: 56px; }
-        .contact-icon { background: rgba(255,255,255,.1); color: #d4b18a; }
-        .contact-item:hover { color: #e2bc91; }
-        .reveal { transition: opacity .7s ease, transform .7s ease; }
-        :focus-visible { outline: 3px solid #c58e60; outline-offset: 4px; }
-
-        @media (max-width: 992px) {
-            .container { padding-top: 64px; padding-bottom: 64px; }
-            .grid-hero { min-height: 680px; }
-            .carousel-container { height: 470px; min-height: 0; border-radius: 6px; }
-            .rooms-list { grid-template-columns: minmax(0, 1fr); }
-            .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        }
-        @media (max-width: 600px) {
-            .container { padding-top: 48px; padding-bottom: 48px; }
-            .grid-hero { min-height: 640px; }
-            .text-column { top: auto; bottom: 24px; left: 16px; width: calc(100% - 32px); transform: none; padding: 24px 20px; }
-            .carousel-container { height: 620px; min-height: 0; border-radius: 6px; }
-            .rooms-list { grid-template-columns: minmax(0, 1fr); }
-            .room-info h3 { min-height: 0; }
-            .room-card { grid-template-columns: 1fr; }
-            .room-gallery { min-height: 300px; }
-            .room-img { height: 300px; min-height: 300px; }
-            .room-info { margin: 14px; padding: 26px 22px; }
-            .room-tabs { justify-content: flex-start; overflow-x: auto; }
-            .room-tab { flex: 0 0 auto; padding: 12px 18px; }
-            .room-features { gap: 11px 16px; }
-            .cards-grid { grid-template-columns: 1fr; }
-            .references-grid { grid-template-columns: 1fr; }
-            .card { min-height: 0; }
-            .gallery-grid img { flex-basis: 145px; height: 200px; }
-            .gallery-grid img:hover, .gallery-grid img:focus { flex-basis: 260px; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
-            .reveal { opacity: 1; transform: none; }
-        }
-    </style>
+    <!-- Estilos do Site -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <div class="glow-effect"></div>
-
-    <!-- 1. SEÇÃO HERO COM CARROSSEL -->
-    <main class="container reveal">
-        <div class="grid-hero">
-            <div class="text-column">
-                <div class="badge">
-                    <i data-lucide="sun"></i>
+    <!-- ====================================================================
+         HEADER & NAVBAR FIXA COM GLASSMORPHISM
+         ==================================================================== -->
+    <header class="site-header" id="site-header">
+        <nav class="navbar" aria-label="Navegação Principal">
+            <a href="#inicio" class="brand" aria-label="Flor de Sal Hotel - Início">
+                <img src="fotos/logos/HT-trim.png" alt="Logotipo Flor de Sal Hotel" class="brand-logo">
+                <div class="brand-text">
+                    <span class="brand-title">Flor de Sal</span>
+                    <span class="brand-subtitle">Beach Resort & Spa</span>
                 </div>
-                
-                <h1>
-                    <img src="fotos/logos/HT.png" alt="logo_geral" style="height: 15rem; vertical-align: middle; margin-right: 10px;">
-                </h1>
-                
-                <p class="description">
-                    Experimente o luxo à beira-mar. Areia branca, águas cristalinas e um serviço de classe mundial esperando por você e sua família.
-                </p>
-                
-                <a href="#quartos" class="btn">
-                    Ver Acomodações
-                    <i data-lucide="arrow-right"></i>
+            </a>
+
+            <!-- Menu de Navegação -->
+            <ul class="nav-menu" id="nav-menu" role="menubar">
+                <li role="none"><a href="#inicio" class="nav-link active" role="menuitem">Início</a></li>
+                <li role="none"><a href="#conceito" class="nav-link" role="menuitem">O Conceito</a></li>
+                <li role="none"><a href="#quartos" class="nav-link" role="menuitem">Acomodações</a></li>
+                <li role="none"><a href="#experiencias" class="nav-link" role="menuitem">Experiências</a></li>
+                <li role="none"><a href="#galeria" class="nav-link" role="menuitem">Galeria</a></li>
+                <li role="none"><a href="#contato" class="nav-link" role="menuitem">Contato</a></li>
+            </ul>
+
+            <!-- Ações e Menu Mobile -->
+            <div class="nav-actions">
+                <a href="#reserva" class="btn-nav">
+                    <i data-lucide="calendar"></i>
+                    <span>Reservar</span>
                 </a>
+                <button class="mobile-toggle" aria-label="Abrir Menu" aria-expanded="false" aria-controls="nav-menu">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ====================================================================
+         1. SEÇÃO HERO COM CARROSSEL E CARTÃO GLASSMORPHISM
+         ==================================================================== -->
+    <main id="inicio" class="hero-section">
+        <div class="container hero-wrapper">
+            
+            <!-- Cartão Flutuante de Destaque -->
+            <div class="hero-card reveal">
+                <div class="badge">
+                    <i data-lucide="sparkles"></i>
+                    <span>Costa Branca • Rio Grande do Norte</span>
+                </div>
+
+                <div class="hero-brand-wrap">
+                    <img src="fotos/logos/HT-trim.png" alt="Flor de Sal Emblem" class="hero-logo-img">
+                    <div class="hero-title-wrap">
+                        <span class="hero-subtitle">Resort & Spa à Beira-Mar</span>
+                        <h1>Flor de Sal</h1>
+                    </div>
+                </div>
+
+                <p class="hero-description">
+                    Onde o horizonte do Atlântico encontra a pureza das salinas e a serenidade das dunas. Um refúgio arquitetônico projetado para reconectar você ao ritmo do mar e à natureza.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#quartos" class="btn btn-primary">
+                        <span>Ver Acomodações</span>
+                        <i data-lucide="arrow-right"></i>
+                    </a>
+                    <a href="#conceito" class="btn btn-secondary">
+                        <span>O Conceito</span>
+                    </a>
+                </div>
             </div>
 
-            <!-- CARROSSEL -->
-            <div class="carousel-container">
-                <!-- Imagem 1 -->
-                <div class="carousel-slide active">
-                    <img src="fotos/carrossel-1.jpg" alt="Vista do Resort">
+            <!-- Carrossel de Imagens de Alta Resolução -->
+            <div class="hero-carousel" aria-label="Imagens do Resort">
+                <div class="hero-slide active">
+                    <img src="fotos/carrossel/carrossel-1.jpg" alt="Vista Panorâmica do Flor de Sal Hotel">
                 </div>
-                <!-- Imagem 2 -->
-                <div class="carousel-slide">
-                    <img src="fotos/carrossel-2.jpg" alt="Piscina de borda infinita">
+                <div class="hero-slide">
+                    <img src="fotos/carrossel/carrossel-2.jpg" alt="Piscina de Borda Infinita debruçada sobre o mar">
                 </div>
-                <!-- Imagem 3 -->
-                <div class="carousel-slide">
-                    <img src="fotos/galeria-praia.jpg" alt="Praia do resort ao entardecer">
+                <div class="hero-slide">
+                    <img src="fotos/carrossel/galeria-praia.jpg" alt="Praia Privativa e Dunas ao Entardecer">
                 </div>
 
-                <!-- Botões de navegação -->
-                <button class="carousel-btn prev-btn" onclick="moveSlide(-1)">
+                <!-- Botões de Navegação -->
+                <button class="hero-ctrl hero-prev" aria-label="Slide anterior">
                     <i data-lucide="chevron-left"></i>
                 </button>
-                <button class="carousel-btn next-btn" onclick="moveSlide(1)">
+                <button class="hero-ctrl hero-next" aria-label="Próximo slide">
                     <i data-lucide="chevron-right"></i>
                 </button>
 
                 <!-- Indicadores (Bolinhas) -->
-                <div class="carousel-indicators">
-                    <span class="dot active" onclick="currentSlide(0)"></span>
-                    <span class="dot" onclick="currentSlide(1)"></span>
-                    <span class="dot" onclick="currentSlide(2)"></span>
+                <div class="hero-indicators" role="tablist" aria-label="Seletores de slide">
+                    <button class="hero-dot active" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+                    <button class="hero-dot" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+                    <button class="hero-dot" role="tab" aria-selected="false" aria-label="Slide 3"></button>
                 </div>
             </div>
+
         </div>
     </main>
 
-    <!-- 2. SEÇÃO DE AMENIDADES -->
-    <section class="container" style="padding-top: 40px;">
-        <h2 class="section-title reveal">A Experiência Completa</h2>
-        <p class="section-subtitle reveal">Tudo o que você precisa para relaxar e se desconectar.</p>
+    <!-- ====================================================================
+         WIDGET DE RESERVA INTERATIVO (BOOKING BAR)
+         ==================================================================== -->
+    <div class="booking-bar-wrapper" id="reserva">
+        <form class="booking-bar reveal" id="booking-bar-form">
+            <div class="booking-field">
+                <label for="checkin-date" class="booking-label">
+                    <i data-lucide="calendar"></i>
+                    <span>Check-in</span>
+                </label>
+                <input type="date" id="checkin-date" class="booking-input" required>
+            </div>
 
-        <div class="cards-grid">
-            <div class="card reveal" style="transition-delay: 0.1s;">
-                <div class="card-icon"><i data-lucide="waves"></i></div>
-                <h3>Praia Privativa</h3>
-                <p>Acesso exclusivo a uma faixa de areia branca, com serviço de garçom e espreguiçadeiras.</p>
+            <div class="booking-field">
+                <label for="checkout-date" class="booking-label">
+                    <i data-lucide="calendar-check"></i>
+                    <span>Check-out</span>
+                </label>
+                <input type="date" id="checkout-date" class="booking-input" required>
             </div>
-            <div class="card reveal" style="transition-delay: 0.2s;">
-                <div class="card-icon"><i data-lucide="utensils-crossed"></i></div>
-                <h3>Alta Gastronomia</h3>
-                <p>Três restaurantes de padrão internacional com frutos do mar frescos e menu degustação.</p>
+
+            <div class="booking-field">
+                <label for="booking-room-select" class="booking-label">
+                    <i data-lucide="bed"></i>
+                    <span>Acomodação</span>
+                </label>
+                <select id="booking-room-select" class="booking-select">
+                    <option value="salina">Suíte Salina (Master)</option>
+                    <option value="maresia">Bangalô Maresia</option>
+                    <option value="duna">Refúgio Duna</option>
+                </select>
             </div>
-            <div class="card reveal" style="transition-delay: 0.3s;">
-                <div class="card-icon"><i data-lucide="sparkles"></i></div>
-                <h3>Spa & Bem-estar</h3>
-                <p>Massagens relaxantes, terapias com pedras quentes e piscinas aquecidas de borda infinita.</p>
+
+            <div class="booking-field">
+                <label for="booking-guests-select" class="booking-label">
+                    <i data-lucide="users"></i>
+                    <span>Hóspedes</span>
+                </label>
+                <select id="booking-guests-select" class="booking-select">
+                    <option value="2">2 Adultos</option>
+                    <option value="1">1 Adulto</option>
+                    <option value="3">3 Hóspedes</option>
+                    <option value="4">Família (4 Hóspedes)</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary booking-submit-btn">
+                <span>Disponibilidade</span>
+                <i data-lucide="arrow-right"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- ====================================================================
+         2. SEÇÃO: O CONCEITO ARQUITETÔNICO
+         ==================================================================== -->
+    <section class="container" id="conceito">
+        <div class="concept-grid">
+            <div class="concept-text reveal">
+                <span class="section-tag">Identidade & Paisagem</span>
+                <h2 class="section-title">Arquitetura que dialoga com o sal e o mar</h2>
+                <p>
+                    O <strong>Flor de Sal Hotel</strong> nasce da simbiose entre o ecossistema singular da Costa Branca e uma visão arquitetônica contemporânea e sensível. A luz filtrada pelas pérgolas, os brises de madeira e as formas orgânicas prestam homenagem à geometria dos cristais de sal marinho.
+                </p>
+                <p>
+                    Cada elemento foi desenhado para respeitar a topografia litorânea, privilegiando ventilação cruzada natural, sombreamento inteligente e matérias-primas táteis que conectam os hóspedes à essência do semiárido litorâneo potiguar.
+                </p>
+
+                <!-- Pilares do Projeto -->
+                <div class="concept-pillars">
+                    <div class="pillar-item">
+                        <div class="pillar-icon"><i data-lucide="wind"></i></div>
+                        <h4>Bioclimatismo</h4>
+                        <p>Aproveitamento integral da brisa oceânica para resfriamento passivo e bem-estar térmico.</p>
+                    </div>
+                    <div class="pillar-item">
+                        <div class="pillar-icon"><i data-lucide="feather"></i></div>
+                        <h4>Materialidade Natural</h4>
+                        <p>Texturas minerais, madeira de manejo sustentável e pedra esculpida inspirada nas salinas.</p>
+                    </div>
+                    <div class="pillar-item">
+                        <div class="pillar-icon"><i data-lucide="sun"></i></div>
+                        <h4>Luz & Sombra</h4>
+                        <p>Brises verticais e pérgolas que criam poesia visual com o movimento do sol ao longo do dia.</p>
+                    </div>
+                    <div class="pillar-item">
+                        <div class="pillar-icon"><i data-lucide="compass"></i></div>
+                        <h4>Integração Espacial</h4>
+                        <p>Transições fluídas entre áreas internas e externas, emoldurando as dunas e o oceano.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept-visual reveal">
+                <div class="concept-img-wrapper">
+                    <img src="fotos/carrossel/carrossel-1.jpg" alt="Conceito arquitetônico do resort Flor de Sal">
+                </div>
+                <div class="concept-quote-card">
+                    <blockquote>
+                        "A arquitetura não compete com a imensidão da costa; ela se dissolve na luz, no vento e na brancura do sal."
+                    </blockquote>
+                    <cite>Equipe de Concepção Arquitetônica • UFERSA</cite>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 3. SEÇÃO DE QUARTOS -->
-        <section id="quartos" class="container" style="background-color: #f1f5f9; border-radius: 40px; margin-top: 40px; padding: 80px 40px;">
-        <h2 class="section-title reveal">Nossas Acomodações</h2>
-        <p class="section-subtitle reveal">Conforto absoluto com vistas deslumbrantes.</p>
-
-        <div class="room-tabs" role="tablist" aria-label="Escolha uma acomodação">
-            <button class="room-tab" type="button" role="tab" id="tab-salina" aria-controls="room-salina" aria-selected="true">Salina</button>
-            <button class="room-tab" type="button" role="tab" id="tab-maresia" aria-controls="room-maresia" aria-selected="false" tabindex="-1">Maresia</button>
-            <button class="room-tab" type="button" role="tab" id="tab-duna" aria-controls="room-duna" aria-selected="false" tabindex="-1">Duna</button>
+    <!-- ====================================================================
+         3. SEÇÃO: ACOMODAÇÕES (COM TABS E SLIDERS INDIVIDUAIS)
+         ==================================================================== -->
+    <section class="container rooms-section" id="quartos">
+        <div class="section-header reveal">
+            <span class="section-tag">Exclusividade & Conforto</span>
+            <h2 class="section-title">Nossas Acomodações</h2>
+            <p class="section-subtitle">
+                Projetadas para proporcionar privacidade absoluta, integração com a paisagem e o mais alto padrão de relaxamento.
+            </p>
         </div>
-        <div class="rooms-list">
-                <article class="room-card reveal is-current" id="room-salina" role="tabpanel" aria-labelledby="tab-salina" data-room-card>
-                <div class="room-gallery" aria-label="Fotos da acomodação Salina">
-                    <img src="fotos/salina.jpg" alt="Varanda da acomodação Salina com vista para o mar" class="room-img is-active" style="object-fit: cover;">
-                    <img src="fotos/salina-2.jpg" alt="Detalhe da acomodação Salina — foto 2" class="room-img" style="object-fit: cover;">
-                    <img src="fotos/salina-3.jpg" alt="Detalhe da acomodação Salina — foto 3" class="room-img" style="object-fit: cover;">
-                    <div class="room-gallery-controls">
-                        <button type="button" data-gallery-step="-1" aria-label="Foto anterior">‹</button>
-                        <span class="room-gallery-count" aria-live="polite">1 / 1</span>
-                        <button type="button" data-gallery-step="1" aria-label="Próxima foto">›</button>
-                    </div>
-                </div>
-                <div class="room-info">
-                    <h3><img src="fotos/logos/SALINA.png" alt="Logo Salina" style="height: 3rem; vertical-align: middle; margin-right: 8px;"> Salina
-                    <span style="font-size: 0.85rem; color: var(--text-muted); margin-left: 8px;">(Salina)</span>
-                    </h3>
-                    <div class="room-features">
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="users"></i>Até 4 pessoas</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="wifi"></i>Wi-fi</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="coffee"></i>Café incluso</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="tv"></i>TV</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="package"></i>Frigobar</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="airplay"></i>Ar-condicionado</span>
-                    </div>
-                    <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">Possui varanda privativa com vista para o mar, banheira.</p>
-                    <a href="#contato" class="btn" style="width: 100%; justify-content: center; padding: 12px; font-size: 0.95rem; margin-top: 10px;">Reservar Agora</a>
-                </article>
 
-            <article class="room-card reveal" id="room-maresia" role="tabpanel" aria-labelledby="tab-maresia" data-room-card hidden>
-                <div class="room-gallery" aria-label="Fotos da acomodação Maresia">
-                    <img src="fotos/bangalo-tropical.jpg" alt="Bangalô tropical da acomodação Maresia" class="room-img is-active" style="object-fit: cover;">
-                    <img src="fotos/maresia-2.jpg" alt="Detalhe da acomodação Maresia — foto 2" class="room-img" style="object-fit: cover;">
-                    <img src="fotos/maresia-3.jpg" alt="Detalhe da acomodação Maresia — foto 3" class="room-img" style="object-fit: cover;">
-                    <div class="room-gallery-controls">
-                        <button type="button" data-gallery-step="-1" aria-label="Foto anterior">‹</button>
-                        <span class="room-gallery-count" aria-live="polite">1 / 1</span>
-                        <button type="button" data-gallery-step="1" aria-label="Próxima foto">›</button>
-                    </div>
-                </div>
-                <div class="room-info">
-                    <h3><img src="fotos/logos/MARESIA.png" alt="Logo Maresia" style="height: 3rem; vertical-align: middle; margin-right: 8px;"> Quarto Maresia</h3>
-                    <div class="room-features">
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="users"></i> Até 3 pessoas</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="wifi"></i> Wi-fi</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="coffee"></i> Café incluso</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="tv"></i>TV</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="package"></i>Frigobar</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="airplay"></i>Ar-condicionado</span>
-                    </div>
-                    <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">Possui varanda privativa, frigobar.</p>
-                    <a href="#contato" class="btn" style="width: 100%; justify-content: center; padding: 12px; font-size: 0.95rem; margin-top: 10px;">Reservar Agora</a>
-                </article>
-            <article class="room-card reveal" id="room-duna" role="tabpanel" aria-labelledby="tab-duna" data-room-card hidden>
-                <div class="room-gallery" aria-label="Fotos da acomodação Duna">
-                    <img src="fotos/duna-1.jpeg" alt="Quarto da acomodação Duna" class="room-img is-active" style="object-fit: cover;">
-                    <img src="fotos/duna-2.jpeg" alt="Detalhe da acomodação Duna — foto 2" class="room-img" style="object-fit: cover;">
-                    <img src="fotos/duna-3.jpeg" alt="Detalhe da acomodação Duna — foto 3" class="room-img" style="object-fit: cover;">
-                    <div class="room-gallery-controls">
-                        <button type="button" data-gallery-step="-1" aria-label="Foto anterior">‹</button>
-                        <span class="room-gallery-count" aria-live="polite">1 / 1</span>
-                        <button type="button" data-gallery-step="1" aria-label="Próxima foto">›</button>
-                    </div>
-                </div>
-                <div class="room-info">
-                    <h3><img src="fotos/logos/DUNA.png" alt="Logo Duna" style="height: 3rem; vertical-align: middle; margin-right: 8px;"> Quarto Duna</h3>
-                    <div class="room-features">
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="users"></i> Até 2 pessoas</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="wifi"></i> Wi-fi</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="coffee"></i> Café incluso</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="tv"></i>TV</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="package"></i>Frigobar</span>
-                        <span style="display:flex; gap:6px; align-items:center;"><i data-lucide="airplay"></i>Ar-condicionado</span>
-                    </div>
-                    <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">Climatizado, possui varanda privativa com vista para o mar, banheira e frigobar.</p>
-                    <a href="#contato" class="btn" style="width: 100%; justify-content: center; padding: 12px; font-size: 0.95rem; margin-top: 10px;">Reservar Agora</a>
-                </article>
+        <!-- Abas de Navegação dos Quartos -->
+        <div class="rooms-tabs reveal" role="tablist" aria-label="Escolha uma acomodação">
+            <button class="room-tab-btn" type="button" role="tab" id="tab-salina" aria-controls="panel-salina" aria-selected="true" tabindex="0">
+                <i data-lucide="sparkles"></i>
+                <span>Suíte Salina</span>
+            </button>
+            <button class="room-tab-btn" type="button" role="tab" id="tab-maresia" aria-controls="panel-maresia" aria-selected="false" tabindex="-1">
+                <i data-lucide="wind"></i>
+                <span>Bangalô Maresia</span>
+            </button>
+            <button class="room-tab-btn" type="button" role="tab" id="tab-duna" aria-controls="panel-duna" aria-selected="false" tabindex="-1">
+                <i data-lucide="sun"></i>
+                <span>Refúgio Duna</span>
+            </button>
         </div>
+
+        <!-- 3.1 QUARTO SALINA -->
+        <article class="room-card-panel active" id="panel-salina" role="tabpanel" aria-labelledby="tab-salina">
+            <div class="room-layout">
+                <!-- Slider com as 3 fotos do Quarto Salina -->
+                <div class="room-slider" aria-label="Galeria da Suíte Salina">
+                    <img src="fotos/quarto-salina/salina-1.jpg" alt="Suíte Salina - Vista panorâmica para o mar" class="room-slide-img is-active">
+                    <img src="fotos/quarto-salina/salina-2.jpg" alt="Suíte Salina - Detalhes do interior e iluminação" class="room-slide-img">
+                    <img src="fotos/quarto-salina/salina-3.jpg" alt="Suíte Salina - Varanda privativa" class="room-slide-img">
+
+                    <div class="room-slider-ctrls">
+                        <button type="button" class="room-slider-btn" data-room-step="-1" aria-label="Foto anterior">
+                            <i data-lucide="chevron-left"></i>
+                        </button>
+                        <span class="room-photo-counter" aria-live="polite">1 / 3</span>
+                        <button type="button" class="room-slider-btn" data-room-step="1" aria-label="Próxima foto">
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Detalhes do Quarto Salina -->
+                <div class="room-details">
+                    <div>
+                        <div class="room-header-wrap">
+                            <img src="fotos/logos/SALINA-trim.png" alt="Emblema Salina" class="room-logo-thumb">
+                            <div class="room-title-box">
+                                <span class="room-type-tag">Master Ocean Suite</span>
+                                <h3>Suíte Salina</h3>
+                            </div>
+                        </div>
+
+                        <p class="room-description">
+                            Nossa acomodação master com ampla varanda privativa debruçada sobre o mar, banheira de imersão esculpida em pedra natural e iluminação zenital acolhedora que celebra os tons dos cristais de sal.
+                        </p>
+
+                        <!-- Ficha Técnica -->
+                        <div class="room-specs-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Área Privativa</span>
+                                <span class="spec-val"><i data-lucide="maximize-2"></i> 68 m²</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Capacidade</span>
+                                <span class="spec-val"><i data-lucide="users"></i> Até 4 hóspedes</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Orientação</span>
+                                <span class="spec-val"><i data-lucide="compass"></i> Frente Mar 180°</span>
+                            </div>
+                        </div>
+
+                        <!-- Comodidades com Ícones -->
+                        <div class="room-amenities-list">
+                            <div class="amenity-chip"><i data-lucide="wifi"></i> Wi-Fi de Alta Velocidade</div>
+                            <div class="amenity-chip"><i data-lucide="coffee"></i> Café da Manhã Incluso</div>
+                            <div class="amenity-chip"><i data-lucide="droplet"></i> Banheira de Imersão</div>
+                            <div class="amenity-chip"><i data-lucide="tv"></i> Smart TV 55" 4K</div>
+                            <div class="amenity-chip"><i data-lucide="wine"></i> Frigobar Gourmet</div>
+                            <div class="amenity-chip"><i data-lucide="wind"></i> Ar-Condicionado Inverter</div>
+                        </div>
+                    </div>
+
+                    <div class="room-cta-row">
+                        <div class="room-price-box">
+                            <span class="price-sub">Diárias a partir de</span>
+                            <span class="price-main">R$ 1.450 <span class="price-period">/ noite</span></span>
+                        </div>
+                        <button type="button" class="btn btn-primary" data-reserve-room="salina">
+                            <span>Reservar Esta Suíte</span>
+                            <i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- 3.2 QUARTO MARESIA -->
+        <article class="room-card-panel" id="panel-maresia" role="tabpanel" aria-labelledby="tab-maresia" hidden>
+            <div class="room-layout">
+                <!-- Slider com as 3 fotos do Quarto Maresia -->
+                <div class="room-slider" aria-label="Galeria do Bangalô Maresia">
+                    <img src="fotos/quarto-maresia/maresia-1.jpg" alt="Bangalô Maresia - Fachada tropical" class="room-slide-img is-active">
+                    <img src="fotos/quarto-maresia/maresia-2.jpg" alt="Bangalô Maresia - Ambiente interno integrado" class="room-slide-img">
+                    <img src="fotos/quarto-maresia/maresia-3.jpg" alt="Bangalô Maresia - Deck e varanda" class="room-slide-img">
+
+                    <div class="room-slider-ctrls">
+                        <button type="button" class="room-slider-btn" data-room-step="-1" aria-label="Foto anterior">
+                            <i data-lucide="chevron-left"></i>
+                        </button>
+                        <span class="room-photo-counter" aria-live="polite">1 / 3</span>
+                        <button type="button" class="room-slider-btn" data-room-step="1" aria-label="Próxima foto">
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Detalhes do Quarto Maresia -->
+                <div class="room-details">
+                    <div>
+                        <div class="room-header-wrap">
+                            <img src="fotos/logos/MARESIA-trim.png" alt="Emblema Maresia" class="room-logo-thumb">
+                            <div class="room-title-box">
+                                <span class="room-type-tag">Bangalô Tropical com Deck</span>
+                                <h3>Bangalô Maresia</h3>
+                            </div>
+                        </div>
+
+                        <p class="room-description">
+                            Envolvido pela vegetação litorânea preservada, o Bangalô Maresia oferece um deck de madeira suspenso com redes artesanais e ventilação cruzada contínua, unindo o frescor da brisa marítima ao conforto acolhedor.
+                        </p>
+
+                        <!-- Ficha Técnica -->
+                        <div class="room-specs-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Área Privativa</span>
+                                <span class="spec-val"><i data-lucide="maximize-2"></i> 52 m²</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Capacidade</span>
+                                <span class="spec-val"><i data-lucide="users"></i> Até 3 hóspedes</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Orientação</span>
+                                <span class="spec-val"><i data-lucide="compass"></i> Jardim & Mar</span>
+                            </div>
+                        </div>
+
+                        <!-- Comodidades com Ícones -->
+                        <div class="room-amenities-list">
+                            <div class="amenity-chip"><i data-lucide="wifi"></i> Wi-Fi de Alta Velocidade</div>
+                            <div class="amenity-chip"><i data-lucide="coffee"></i> Café da Manhã Incluso</div>
+                            <div class="amenity-chip"><i data-lucide="sun"></i> Deck Panorâmico</div>
+                            <div class="amenity-chip"><i data-lucide="tv"></i> Smart TV 50"</div>
+                            <div class="amenity-chip"><i data-lucide="wine"></i> Frigobar Gourmet</div>
+                            <div class="amenity-chip"><i data-lucide="wind"></i> Ar-Condicionado Inverter</div>
+                        </div>
+                    </div>
+
+                    <div class="room-cta-row">
+                        <div class="room-price-box">
+                            <span class="price-sub">Diárias a partir de</span>
+                            <span class="price-main">R$ 1.180 <span class="price-period">/ noite</span></span>
+                        </div>
+                        <button type="button" class="btn btn-primary" data-reserve-room="maresia">
+                            <span>Reservar Este Bangalô</span>
+                            <i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- 3.3 QUARTO DUNA -->
+        <article class="room-card-panel" id="panel-duna" role="tabpanel" aria-labelledby="tab-duna" hidden>
+            <div class="room-layout">
+                <!-- Slider com as 3 fotos do Quarto Duna -->
+                <div class="room-slider" aria-label="Galeria do Refúgio Duna">
+                    <img src="fotos/quarto-duna/duna-1.jpeg" alt="Refúgio Duna - Cama e acabamentos amadeirados" class="room-slide-img is-active">
+                    <img src="fotos/quarto-duna/duna-2.jpeg" alt="Refúgio Duna - Vista para o mar através de grandes panos de vidro" class="room-slide-img">
+                    <img src="fotos/quarto-duna/duna-3.jpeg" alt="Refúgio Duna - Integração com as dunas" class="room-slide-img">
+
+                    <div class="room-slider-ctrls">
+                        <button type="button" class="room-slider-btn" data-room-step="-1" aria-label="Foto anterior">
+                            <i data-lucide="chevron-left"></i>
+                        </button>
+                        <span class="room-photo-counter" aria-live="polite">1 / 3</span>
+                        <button type="button" class="room-slider-btn" data-room-step="1" aria-label="Próxima foto">
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Detalhes do Quarto Duna -->
+                <div class="room-details">
+                    <div>
+                        <div class="room-header-wrap">
+                            <img src="fotos/logos/DUNA-trim.png" alt="Emblema Duna" class="room-logo-thumb">
+                            <div class="room-title-box">
+                                <span class="room-type-tag">Refúgio Contemporâneo</span>
+                                <h3>Refúgio Duna</h3>
+                            </div>
+                        </div>
+
+                        <p class="room-description">
+                            Inspirado na sinuosidade e calma das dunas brancas da Costa Branca. Uma experiência intimista e elegante, desenhada para casais com abertura envidraçada de piso ao teto e acabamentos em tons areia e linho natural.
+                        </p>
+
+                        <!-- Ficha Técnica -->
+                        <div class="room-specs-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Área Privativa</span>
+                                <span class="spec-val"><i data-lucide="maximize-2"></i> 40 m²</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Capacidade</span>
+                                <span class="spec-val"><i data-lucide="users"></i> Até 2 hóspedes</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Orientação</span>
+                                <span class="spec-val"><i data-lucide="compass"></i> Vista Dunas & Mar</span>
+                            </div>
+                        </div>
+
+                        <!-- Comodidades com Ícones -->
+                        <div class="room-amenities-list">
+                            <div class="amenity-chip"><i data-lucide="wifi"></i> Wi-Fi de Alta Velocidade</div>
+                            <div class="amenity-chip"><i data-lucide="coffee"></i> Café da Manhã Incluso</div>
+                            <div class="amenity-chip"><i data-lucide="eye"></i> Janelas Panorâmicas</div>
+                            <div class="amenity-chip"><i data-lucide="tv"></i> Smart TV 43"</div>
+                            <div class="amenity-chip"><i data-lucide="wine"></i> Frigobar Gourmet</div>
+                            <div class="amenity-chip"><i data-lucide="wind"></i> Ar-Condicionado Inverter</div>
+                        </div>
+                    </div>
+
+                    <div class="room-cta-row">
+                        <div class="room-price-box">
+                            <span class="price-sub">Diárias a partir de</span>
+                            <span class="price-main">R$ 890 <span class="price-period">/ noite</span></span>
+                        </div>
+                        <button type="button" class="btn btn-primary" data-reserve-room="duna">
+                            <span>Reservar Este Quarto</span>
+                            <i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </article>
     </section>
 
-    <!-- 4. GALERIA DE FOTOS -->
-    <section class="container" style="background-color: #f1f5f9; border-radius: 40px; margin-top: 60px; padding: 40px 40px;">
-        <h2 class="section-title reveal">Conheça o Paraíso</h2>
-        <p class="section-subtitle reveal">Um pouco do que espera por você no Flor de sal.</p>
-
-        <div class="gallery-grid reveal">
-            <img src="fotos/galeria-piscina.jpg" alt="Nossa Piscina" tabindex="0">
-            <img src="fotos/galeria-restaurante.jpg" alt="Nosso Restaurante" tabindex="0">
-            <img src="fotos/galeria-praia.jpg" alt="Nossa Praia" tabindex="0">
-        </div>
-    </section>
-
-    <!-- 5. RODAPÉ -->
-    <footer id="contato" class="reveal">
-        <div class="footer-content">
-            <div>
-                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 8px;">Flor de sal</h3>
-                <p style="color: #94a3b8; font-size: 14px;">Beach Resort & Spa © 2026</p>
+    <!-- ====================================================================
+         4. SEÇÃO: EXPERIÊNCIAS & AMENIDADES
+         ==================================================================== -->
+    <section class="amenities-section" id="experiencias">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">A Experiência Completa</span>
+                <h2 class="section-title">Sensações que marcam a alma</h2>
+                <p class="section-subtitle">
+                    Momentos desenhados para desconectar você da rotina e conectar ao ritmo calmo da maré.
+                </p>
             </div>
 
-            <div style="display: flex; gap: 32px; flex-wrap: wrap;">
-                <a href="tel:+5511999999999" class="contact-item">
-                    <div class="contact-icon"><i data-lucide="phone"></i></div>
-                    <span>+55 (11) 99999-9999</span>
-                </a>
-                <a href="mailto:reservas@floradesal.com" class="contact-item">
-                    <div class="contact-icon"><i data-lucide="mail"></i></div>
-                    <span>reservas@floradesal.com</span>
-                </a>
+            <div class="cards-grid">
+                <!-- Card 1 -->
+                <div class="amenity-card reveal">
+                    <div class="amenity-icon-box">
+                        <i data-lucide="waves"></i>
+                    </div>
+                    <h3>Praia Privativa & Beach Club</h3>
+                    <p>
+                        Acesso exclusivo à faixa de areia dourada com espreguiçadeiras anatômicas de madeira, serviço atencioso de praia e bangalôs sombreados de frente para as piscinas naturais formadas pela maré baixa.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="amenity-card reveal" style="transition-delay: 0.15s;">
+                    <div class="amenity-icon-box">
+                        <i data-lucide="utensils-crossed"></i>
+                    </div>
+                    <h3>Gastronomia do Sal</h3>
+                    <p>
+                        Restaurante com menu degustação autoral assinado por chefs locais, unindo frutos do mar frescos, temperos regionais e a genuína flor de sal colhida artesanalmente nas salinas do Rio Grande do Norte.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="amenity-card reveal" style="transition-delay: 0.3s;">
+                    <div class="amenity-icon-box">
+                        <i data-lucide="sparkles"></i>
+                    </div>
+                    <h3>Spa Mineral & Bem-Estar</h3>
+                    <p>
+                        Rituais terapêuticos holísticos que utilizam sais minerais marinhos, massagens relaxantes ao ar livre ao som das ondas e piscina aquecida de borda infinita integrada ao espelho d'água das salinas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================================================================
+         5. SEÇÃO: GALERIA DE FOTOS & RENDERS 3D COM LIGHTBOX
+         ==================================================================== -->
+    <section class="gallery-section" id="galeria">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Perspectivas do Projeto</span>
+                <h2 class="section-title">Conheça o Paraíso</h2>
+                <p class="section-subtitle">
+                    Renders e registros visuais do empreendimento arquitetônico Flor de Sal. Clique em qualquer imagem para ampliar em alta definição.
+                </p>
+            </div>
+
+            <div class="gallery-grid reveal">
+                <!-- Item 1: Piscina -->
+                <div class="gallery-item" 
+                     tabindex="0" 
+                     role="button" 
+                     aria-label="Ampliar foto da Piscina de Borda Infinita"
+                     data-img-src="fotos/carrossel/galeria-piscina.jpg" 
+                     data-img-title="Piscina de Borda Infinita" 
+                     data-img-desc="Espelho d'água de alvenaria e pedra clara debruçado sobre a orla do Atlântico.">
+                    <img src="fotos/carrossel/galeria-piscina.jpg" alt="Piscina de Borda Infinita" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">Área de Lazer</span>
+                        <h4 class="gallery-caption">Piscina de Borda Infinita</h4>
+                    </div>
+                    <div class="gallery-zoom-icon"><i data-lucide="maximize-2"></i></div>
+                </div>
+
+                <!-- Item 2: Quarto / Acomodação -->
+                <div class="gallery-item" 
+                     tabindex="0" 
+                     role="button" 
+                     aria-label="Ampliar foto da Acomodação Frente Mar"
+                     data-img-src="fotos/carrossel/galeria-quarto.jpg" 
+                     data-img-title="Acomodação com Vista Oceânica" 
+                     data-img-desc="Integração entre quarto e paisagem com ventilação cruzada e brises de proteção solar.">
+                    <img src="fotos/carrossel/galeria-quarto.jpg" alt="Acomodação com Vista Oceânica" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">Conforto Íntimo</span>
+                        <h4 class="gallery-caption">Suíte com Vista Mar</h4>
+                    </div>
+                    <div class="gallery-zoom-icon"><i data-lucide="maximize-2"></i></div>
+                </div>
+
+                <!-- Item 3: Restaurante -->
+                <div class="gallery-item" 
+                     tabindex="0" 
+                     role="button" 
+                     aria-label="Ampliar foto do Restaurante Cristal de Sal"
+                     data-img-src="fotos/carrossel/galeria-restaurante.jpg" 
+                     data-img-title="Restaurante Cristal de Sal" 
+                     data-img-desc="Espaço gastronômico com pé-direito generoso, iluminação intimista e mobiliário em madeira maciça.">
+                    <img src="fotos/carrossel/galeria-restaurante.jpg" alt="Restaurante Cristal de Sal" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">Gastronomia</span>
+                        <h4 class="gallery-caption">Restaurante Cristal de Sal</h4>
+                    </div>
+                    <div class="gallery-zoom-icon"><i data-lucide="maximize-2"></i></div>
+                </div>
+
+                <!-- Item 4: Praia e Dunas -->
+                <div class="gallery-item" 
+                     tabindex="0" 
+                     role="button" 
+                     aria-label="Ampliar foto da Praia e Dunas da Costa Branca"
+                     data-img-src="fotos/carrossel/galeria-praia.jpg" 
+                     data-img-title="Praia & Dunas da Costa Branca" 
+                     data-img-desc="Cenário costeiro com areia branca e mar tranquilo, berço da inspiração do resort.">
+                    <img src="fotos/carrossel/galeria-praia.jpg" alt="Praia e Dunas da Costa Branca" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">Paisagem Litorânea</span>
+                        <h4 class="gallery-caption">Praia & Dunas</h4>
+                    </div>
+                    <div class="gallery-zoom-icon"><i data-lucide="maximize-2"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================================================================
+         6. AVISO INSTITUCIONAL / PROJETO ACADÊMICO
+         ==================================================================== -->
+    <section class="container" style="padding-top: 20px; padding-bottom: 20px;">
+        <div class="academic-note reveal">
+            <div style="margin-bottom: 12px;">
+                <span class="badge">
+                    <i data-lucide="graduation-cap"></i>
+                    <span>Trabalho Acadêmico • Arquitetura & Urbanismo (UFERSA)</span>
+                </span>
+            </div>
+            <p>
+                <strong>Nota Institucional:</strong> Este website é uma peça acadêmica e representativa desenvolvida no âmbito da disciplina de Projeto Arquitetônico para simular a apresentação comercial e espacial de um resort à beira-mar. O projeto integra modelagem 3D, projetos técnicos e representação visual por inteligência artificial para aproximar as soluções arquitetônicas do mercado profissional. Projeto sem fins comerciais.
+            </p>
+        </div>
+    </section>
+
+    <!-- ====================================================================
+         7. FOOTER SOFISTICADO COM CONTATOS
+         ==================================================================== -->
+    <footer class="site-footer" id="contato">
+        <div class="container footer-top">
+            <!-- Coluna 1: Marca -->
+            <div class="footer-brand-wrap">
+                <div class="footer-logo-row">
+                    <img src="fotos/logos/HT-trim.png" alt="Flor de Sal Hotel" class="footer-logo-img">
+                    <div>
+                        <span class="footer-brand-title">Flor de Sal</span>
+                        <span class="footer-brand-sub">Beach Resort & Spa</span>
+                    </div>
+                </div>
+                <p class="footer-desc">
+                    O silêncio das dunas, a pureza das salinas e a sofisticação da arquitetura costeira contemporânea.
+                </p>
+            </div>
+
+            <!-- Coluna 2: Navegação -->
+            <div class="footer-col">
+                <h5>Navegação</h5>
+                <ul class="footer-links">
+                    <li><a href="#inicio" class="footer-link">Início</a></li>
+                    <li><a href="#conceito" class="footer-link">O Conceito</a></li>
+                    <li><a href="#quartos" class="footer-link">Acomodações</a></li>
+                    <li><a href="#experiencias" class="footer-link">Experiências</a></li>
+                    <li><a href="#galeria" class="footer-link">Galeria</a></li>
+                </ul>
+            </div>
+
+            <!-- Coluna 3: Acomodações -->
+            <div class="footer-col">
+                <h5>Acomodações</h5>
+                <ul class="footer-links">
+                    <li><a href="#quartos" class="footer-link">Suíte Salina (Master)</a></li>
+                    <li><a href="#quartos" class="footer-link">Bangalô Maresia</a></li>
+                    <li><a href="#quartos" class="footer-link">Refúgio Duna</a></li>
+                    <li><a href="#reserva" class="footer-link">Simular Estadia</a></li>
+                </ul>
+            </div>
+
+            <!-- Coluna 4: Localização & Contatos -->
+            <div class="footer-col">
+                <h5>Localização & Contato</h5>
+                <div class="footer-contact-list">
+                    <div class="footer-contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <span>Costa Branca • Rio Grande do Norte, Brasil</span>
+                    </div>
+                    <a href="tel:+5584999999999" class="footer-contact-item">
+                        <i data-lucide="phone"></i>
+                        <span>+55 (84) 99999-9999</span>
+                    </a>
+                    <a href="mailto:reservas@floradesal.com" class="footer-contact-item">
+                        <i data-lucide="mail"></i>
+                        <span>reservas@floradesal.com</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <div class="footer-copyright">
+                Flor de Sal Hotel © 2026 — Projeto Acadêmico de Arquitetura & Urbanismo • <strong>UFERSA</strong>.
+            </div>
+            <div style="font-size: 0.8rem; color: rgba(247, 244, 237, 0.45);">
+                Trabalho Estudantil Sem Fins Comerciais
             </div>
         </div>
     </footer>
 
-    <!-- SCRIPT DO SITE -->
-    <script>
-        lucide.createIcons();
+    <!-- ====================================================================
+         MODAL INTERATIVO: SIMULAÇÃO DE RESERVA & WHATSAPP
+         ==================================================================== -->
+    <div class="booking-modal" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="modal-title">Solicitação de Reserva</h3>
+                <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Fechar janela">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-summary-box">
+                    <div class="summary-row">
+                        <span>Acomodação:</span>
+                        <strong id="modal-summary-room">Suíte Salina</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Período:</span>
+                        <strong id="modal-summary-dates">-- até --</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Hóspedes:</span>
+                        <strong id="modal-summary-guests">2 Hóspedes</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Valor Estimado:</span>
+                        <strong id="modal-summary-price">R$ 0,00</strong>
+                    </div>
+                </div>
 
-        // Cada galeria mantém somente as imagens que existem e habilita o carrossel quando há mais de uma.
-        function initializeRoomGalleries() {
-            document.querySelectorAll('.room-gallery').forEach(gallery => {
-                const images = Array.from(gallery.querySelectorAll('.room-img'));
-                images.forEach(image => {
-                    if (!image.naturalWidth) image.remove();
-                });
+                <div class="modal-actions">
+                    <a href="#" class="btn btn-whatsapp" id="whatsapp-booking-btn" target="_blank" rel="noopener noreferrer">
+                        <i data-lucide="message-circle"></i>
+                        <span>Continuar pelo WhatsApp</span>
+                    </a>
+                    <a href="#" class="btn btn-secondary" id="email-booking-btn">
+                        <i data-lucide="mail"></i>
+                        <span>Enviar por E-mail</span>
+                    </a>
+                </div>
 
-                const availableImages = Array.from(gallery.querySelectorAll('.room-img'));
-                const counter = gallery.querySelector('.room-gallery-count');
-                if (availableImages.length === 0) {
-                    gallery.hidden = true;
-                    return;
-                }
+                <p class="modal-disclaimer">
+                    *Esta é uma demonstração do projeto acadêmico Flor de Sal. O link acima gera uma mensagem pré-formatada para simulação de atendimento.
+                </p>
+            </div>
+        </div>
+    </div>
 
-                if (availableImages.length > 1) gallery.classList.add('has-multiple');
-                let activeIndex = Math.max(0, availableImages.findIndex(image => image.classList.contains('is-active')));
-                let galleryTimer;
+    <!-- ====================================================================
+         MODAL LIGHTBOX: VISUALIZADOR EM TELA CHEIA DA GALERIA
+         ==================================================================== -->
+    <div class="lightbox-modal" id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de Imagens">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close" aria-label="Fechar visualizador">
+                <i data-lucide="x"></i>
+            </button>
 
-                const showRoomImage = index => {
-                    activeIndex = (index + availableImages.length) % availableImages.length;
-                    availableImages.forEach((image, imageIndex) => image.classList.toggle('is-active', imageIndex === activeIndex));
-                    if (counter) counter.textContent = `${activeIndex + 1} / ${availableImages.length}`;
-                };
+            <button class="lightbox-nav-btn lightbox-prev" id="lightbox-prev" aria-label="Imagem anterior">
+                <i data-lucide="chevron-left"></i>
+            </button>
+            <button class="lightbox-nav-btn lightbox-next" id="lightbox-next" aria-label="Próxima imagem">
+                <i data-lucide="chevron-right"></i>
+            </button>
 
-                const resetGalleryTimer = () => {
-                    clearInterval(galleryTimer);
-                    if (availableImages.length > 1) {
-                        galleryTimer = setInterval(() => showRoomImage(activeIndex + 1), 5000);
-                    }
-                };
+            <div class="lightbox-img-wrap">
+                <img src="" alt="" id="lightbox-image">
+            </div>
 
-                gallery.querySelectorAll('[data-gallery-step]').forEach(button => {
-                    button.addEventListener('click', () => {
-                        showRoomImage(activeIndex + Number(button.dataset.galleryStep));
-                        resetGalleryTimer();
-                    });
-                });
+            <div class="lightbox-info">
+                <h3 class="lightbox-title" id="lightbox-title">Título da Imagem</h3>
+                <p class="lightbox-desc" id="lightbox-desc">Legenda descritiva do ambiente arquitetônico.</p>
+            </div>
+        </div>
+    </div>
 
-                showRoomImage(activeIndex);
-                resetGalleryTimer();
-            });
-        }
-
-        window.addEventListener('load', initializeRoomGalleries);
-
-        const roomTabs = Array.from(document.querySelectorAll('.room-tab'));
-        roomTabs.forEach((tab, index) => {
-            tab.addEventListener('click', () => {
-                roomTabs.forEach((item, itemIndex) => {
-                    const selected = item === tab;
-                    item.setAttribute('aria-selected', String(selected));
-                    item.tabIndex = selected ? 0 : -1;
-                    document.getElementById(item.getAttribute('aria-controls')).hidden = !selected;
-                });
-            });
-            tab.addEventListener('keydown', event => {
-                if (!['ArrowRight', 'ArrowLeft'].includes(event.key)) return;
-                event.preventDefault();
-                const nextTab = roomTabs[(index + (event.key === 'ArrowRight' ? 1 : -1) + roomTabs.length) % roomTabs.length];
-                nextTab.focus();
-                nextTab.click();
-            });
-        });
-
-        // LÓGICA DO CARROSSEL
-        let slideIndex = 0;
-        let slides = document.querySelectorAll('.carousel-slide');
-        let dots = document.querySelectorAll('.dot');
-        let carouselTimer;
-
-        function showSlide(n) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            // Garante que o índice fique dentro do limite (loop)
-            slideIndex = (n + slides.length) % slides.length;
-            
-            slides[slideIndex].classList.add('active');
-            dots[slideIndex].classList.add('active');
-        }
-
-        function moveSlide(n) {
-            showSlide(slideIndex + n);
-            resetCarouselTimer();
-        }
-
-        function currentSlide(n) {
-            showSlide(n);
-            resetCarouselTimer();
-        }
-
-        function resetCarouselTimer() {
-            clearInterval(carouselTimer);
-            carouselTimer = setInterval(() => moveSlide(1), 5000); // Troca a cada 5 segundos
-        }
-
-        // Inicia o carrossel
-        if(slides.length > 0) {
-            showSlide(0);
-            resetCarouselTimer();
-        }
-
-        // LÓGICA DE ANIMAÇÃO NO SCROLL
-        function revealOnScroll() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll();
-    </script>
+    <!-- Script Principal do Projeto -->
+    <script src="js/main.js"></script>
 </body>
 </html>
