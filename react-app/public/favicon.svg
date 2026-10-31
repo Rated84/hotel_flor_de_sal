@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="16" fill="#18333a"/>
+  <!-- Flor de Sal Crystal Emblem -->
+  <g transform="translate(32, 32)">
+    <!-- 8 crystal petals -->
+    <path d="M0 -22 L4 -8 L16 -16 L8 -4 L22 0 L8 4 L16 16 L4 8 L0 22 L-4 8 L-16 16 L-8 4 L-22 0 L-8 -4 L-16 -16 L-4 -8 Z" fill="#c28453" opacity="0.95"/>
+    <circle cx="0" cy="0" r="5" fill="#f7f4ed"/>
+    <circle cx="0" cy="0" r="2" fill="#18333a"/>
+  </g>
+</svg>
