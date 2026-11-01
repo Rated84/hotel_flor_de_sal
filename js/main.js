@@ -17,6 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileToggle = document.querySelector('.mobile-toggle');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
+    const brandLink = document.querySelector('.brand');
+    if (brandLink && mobileToggle && navMenu) {
+        brandLink.addEventListener('click', () => {
+            if (!header.classList.contains('menu-open')) return;
+            header.classList.remove('menu-open');
+            navMenu.classList.remove('open');
+            document.body.classList.remove('sidebar-open');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+            mobileToggle.setAttribute('aria-label', 'Abrir navegação');
+        });
+    }
 
     const handleScroll = () => {
         if (window.scrollY > 40) {
@@ -30,43 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Menu Mobile
     if (mobileToggle && navMenu) {
+        const syncSidebarSpace = () => document.body.classList.toggle('sidebar-open', header.classList.contains('menu-open') && window.innerWidth > 900);
+        window.addEventListener('resize', syncSidebarSpace);
         mobileToggle.addEventListener('click', () => {
             const isOpen = navMenu.classList.toggle('open');
+            header.classList.toggle('menu-open', isOpen);
+            document.body.classList.toggle('sidebar-open', isOpen && window.innerWidth > 900);
             mobileToggle.setAttribute('aria-expanded', String(isOpen));
-            const icon = mobileToggle.querySelector('i');
-            if (icon) {
-                icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
-                if (window.lucide) lucide.createIcons();
-            }
+            mobileToggle.setAttribute('aria-label', isOpen ? 'Fechar navegação' : 'Abrir navegação');
         });
 
-        // Fecha ao clicar em um link
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (navMenu.classList.contains('open')) {
-                    navMenu.classList.remove('open');
-                    mobileToggle.setAttribute('aria-expanded', 'false');
-                    const icon = mobileToggle.querySelector('i');
-                    if (icon) {
-                        icon.setAttribute('data-lucide', 'menu');
-                        if (window.lucide) lucide.createIcons();
-                    }
-                }
-            });
-        });
-
-        // Fecha ao clicar fora
-        document.addEventListener('click', (e) => {
-            if (!header.contains(e.target) && navMenu.classList.contains('open')) {
-                navMenu.classList.remove('open');
-                mobileToggle.setAttribute('aria-expanded', 'false');
-                const icon = mobileToggle.querySelector('i');
-                if (icon) {
-                    icon.setAttribute('data-lucide', 'menu');
-                    if (window.lucide) lucide.createIcons();
-                }
-            }
-        });
     }
 
     // Scroll Spy: Destaca link ativo conforme rolagem

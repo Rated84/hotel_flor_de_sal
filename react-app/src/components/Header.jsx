@@ -1,12 +1,21 @@
-import { useState, useEffect, useRef } from 'react';
-import { Calendar, Menu, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Calendar, Menu } from 'lucide-react';
 import { navItems } from '../data/hotelData';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('inicio');
-  const headerRef = useRef(null);
+
+  useEffect(() => {
+    const syncSidebarSpace = () => document.body.classList.toggle('sidebar-open', menuOpen && window.innerWidth > 900);
+    syncSidebarSpace();
+    window.addEventListener('resize', syncSidebarSpace);
+    return () => {
+      window.removeEventListener('resize', syncSidebarSpace);
+      document.body.classList.remove('sidebar-open');
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,16 +25,6 @@ export default function Header() {
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (menuOpen && headerRef.current && !headerRef.current.contains(e.target)) {
-        setMenuOpen(false);
-      }
-    };
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, [menuOpen]);
 
   useEffect(() => {
     const sections = document.querySelectorAll('section[id], main[id], footer[id]');
@@ -50,13 +49,18 @@ export default function Header() {
   }, []);
 
   return (
+    <>
+    <div className="hotel-masthead" aria-label="Flor de Sal Hotel, Beach Resort e Spa">
+      <button type="button" className="mobile-toggle" aria-label={menuOpen ? 'Fechar navegação' : 'Abrir navegação'} aria-expanded={menuOpen} aria-controls="nav-menu" onClick={() => setMenuOpen((prev) => !prev)}><Menu /></button>
+      <img src="fotos/logos/HT-trim.png" alt="" />
+      <div><span>FLOR DE SAL HOTEL</span><small>BEACH RESORT &amp; SPA · COSTA BRANCA</small></div>
+    </div>
     <header
-      ref={headerRef}
-      className={`site-header${scrolled ? ' scrolled' : ''}`}
+      className={`site-header${scrolled ? ' scrolled' : ''}${menuOpen ? ' menu-open' : ''}`}
       id="site-header"
     >
       <nav className="navbar" aria-label="Navegação Principal">
-        <a href="#inicio" className="brand" aria-label="Flor de Sal Hotel - Início">
+        <a href="#inicio" className="brand" aria-label="Flor de Sal Hotel - Início" onClick={() => setMenuOpen(false)}>
           <img
             src="fotos/logos/HT-trim.png"
             alt="Logotipo Flor de Sal Hotel"
@@ -79,7 +83,6 @@ export default function Header() {
                 href={item.href}
                 className={`nav-link${activeSection === item.id ? ' active' : ''}`}
                 role="menuitem"
-                onClick={() => setMenuOpen(false)}
               >
                 {item.label}
               </a>
@@ -92,19 +95,10 @@ export default function Header() {
             <Calendar />
             <span>Reservar</span>
           </a>
-          <button
-            type="button"
-            className="mobile-toggle"
-            aria-label="Abrir Menu"
-            aria-expanded={menuOpen}
-            aria-controls="nav-menu"
-            onClick={() => setMenuOpen((prev) => !prev)}
-          >
-            {menuOpen ? <X /> : <Menu />}
-          </button>
         </div>
       </nav>
     </header>
+    </>
   );
 }
 
