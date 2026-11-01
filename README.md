@@ -100,6 +100,12 @@ python3 -m http.server 8080
 
 E acessar no seu navegador: `http://localhost:8080`.
 
+## Publicação no GitHub Pages
+
+O site publicado é a versão estática da raiz (`index.html`, `css/`, `js/` e `fotos/`). O workflow `.github/workflows/pages.yml` prepara esses arquivos e publica automaticamente a cada atualização da branch `main`; `react-app/` fica fora do artefato.
+
+Na configuração do repositório, selecione **Settings → Pages → Build and deployment → Source → GitHub Actions**. Depois, acompanhe a execução em **Actions → Publish static site to GitHub Pages**. O endereço publicado aparece no ambiente `github-pages` da execução.
+
 ---
 
 ## 👥 Créditos & Concepção
