@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. NAVBAR: SCROLL EFFECTS, SCROLL SPY & MENU MOBILE
     // =========================================================================
     const header = document.querySelector('.site-header');
-    const mobileToggle = document.querySelector('.mobile-toggle');
+    const mobileToggle = document.querySelector('.hotel-masthead .mobile-toggle');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
     const brandLink = document.querySelector('.brand');
