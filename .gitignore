@@ -1,1 +1,75 @@
+# ==========================================================================
+# Flor de Sal Hotel — arquivos que NÃO devem ir para o repositório
+# ==========================================================================
+
+# --- Pasta privada do projeto (não versionar) ---
 naomexer/**
+
+# --- Build local do GitHub Pages (gerado pelo workflow) ---
+_site/
+
+# --- react-app: dependências e builds ---
+node_modules/
+react-app/node_modules/
+react-app/dist/
+react-app/build/
+react-app/.vite/
+.npm/
+.eslintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Variáveis de ambiente / segredos ---
+.env
+.env.*
+!.env.example
+
+# --- Sistema operacional ---
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*~
+.directory
+.Trash-*
+
+# --- Editores e IDEs ---
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+
+# --- Python (servidor local: python3 -m http.server) ---
+__pycache__/
+*.pyc
+
+# --- Logs e temporários ---
+*.log
+*.tmp
+*.bak
+
+# --- Arquivos-fonte pesados de imagem/projeto (manter fora do site publicado) ---
+# Exporte as imagens otimizadas (JPG/WebP) para fotos/ e mantenha os originais fora do Git.
+*.psd
+*.ai
+*.skp
+*.skb
+*.blend
+*.blend1
+*.dwg
+*.dwl
+*.dwl2
+*.bak.dwg
+*.rvt
+*.3dm
+*.max
+*.tif
+*.tiff
+*.raw
+*.cr2
+*.nef
