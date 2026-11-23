@@ -366,11 +366,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxNext = document.getElementById('lightbox-next');
 
     let currentLightboxIdx = 0;
-    const galleryData = Array.from(galleryItems).map(item => ({
-        src: item.getAttribute('data-img-src') || item.querySelector('img').src,
-        title: item.getAttribute('data-img-title') || 'Flor de Sal Hotel',
-        desc: item.getAttribute('data-img-desc') || 'Representação visual do projeto arquitetônico.'
-    }));
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    const galleryData = Array.from(galleryItems).map(item => {
+        const thumb = item.querySelector('img');
+        return {
+            // data-img-src é opcional: se não existir, usa a própria miniatura
+            src: item.getAttribute('data-img-src') || (thumb ? thumb.getAttribute('src') : ''),
+            title: item.getAttribute('data-img-title') || (thumb && thumb.alt) || 'Flor de Sal Hotel',
+            desc: item.getAttribute('data-img-desc') || 'Representação visual do projeto arquitetônico.'
+        };
+    });
+
+    // Pré-carrega a imagem anterior e a próxima para a navegação ficar instantânea
+    const preloadImg = (idx) => {
+        const data = galleryData[(idx + galleryData.length) % galleryData.length];
+        if (data && data.src) { const img = new Image(); img.src = data.src; }
+    };
 
     const showLightboxIndex = (index) => {
         if (!galleryData.length || !lightboxModal) return;
@@ -381,6 +392,16 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxImg.alt = item.title;
         lightboxTitle.textContent = item.title;
         lightboxDesc.textContent = item.desc;
+        if (lightboxCounter) {
+            lightboxCounter.textContent = `${currentLightboxIdx + 1} / ${galleryData.length}`;
+        }
+        // Esconde setas se houver só uma imagem
+        const single = galleryData.length < 2;
+        if (lightboxPrev) lightboxPrev.hidden = single;
+        if (lightboxNext) lightboxNext.hidden = single;
+
+        preloadImg(currentLightboxIdx + 1);
+        preloadImg(currentLightboxIdx - 1);
     };
 
     const openLightbox = (index) => {
@@ -415,6 +436,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 closeLightbox();
             }
         });
+
+        // Swipe no celular para passar as fotos ampliadas
+        let lbTouchX = 0;
+        lightboxModal.addEventListener('touchstart', (e) => {
+            lbTouchX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        lightboxModal.addEventListener('touchend', (e) => {
+            const dx = e.changedTouches[0].screenX - lbTouchX;
+            if (Math.abs(dx) > 50) showLightboxIndex(currentLightboxIdx + (dx < 0 ? 1 : -1));
+        }, { passive: true });
+    }
+
+    // "Ver mais fotos": mostra só as primeiras fotos e expande o restante sob demanda
+    const galleryGrid = document.querySelector('.gallery-grid');
+    const moreWrap = document.querySelector('.gallery-more-wrap');
+    const moreBtn = document.querySelector('.gallery-more-btn');
+    if (galleryGrid && moreWrap && moreBtn) {
+        const getLimit = () => (window.innerWidth <= 600 ? 4 : 8); // celular: 4 | PC: 8
+        let expanded = false;
+
+        const applyGalleryLimit = () => {
+            const limit = getLimit();
+            const hasMore = galleryItems.length > limit;
+            galleryItems.forEach((item, idx) => {
+                item.classList.toggle('is-collapsed', !expanded && idx >= limit);
+            });
+            moreWrap.hidden = !hasMore;
+            moreBtn.setAttribute('aria-expanded', String(expanded));
+            const label = moreBtn.querySelector('span');
+            if (label) {
+                label.textContent = expanded
+                    ? 'Ver menos'
+                    : `Ver mais fotos (+${galleryItems.length - limit})`;
+            }
+            moreBtn.classList.toggle('is-expanded', expanded);
+        };
+
+        moreBtn.addEventListener('click', () => {
+            expanded = !expanded;
+            applyGalleryLimit();
+            if (!expanded) {
+                document.getElementById('galeria').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        window.addEventListener('resize', applyGalleryLimit);
+        applyGalleryLimit();
     }
 
     // Tecla ESC e setas do teclado para modais

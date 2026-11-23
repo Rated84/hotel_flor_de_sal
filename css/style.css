@@ -1257,6 +1257,49 @@ button {
     height: 18px;
 }
 
+/* Fotos excedentes ficam ocultas até clicar em "Ver mais" */
+.gallery-item.is-collapsed {
+    display: none;
+}
+
+.gallery-more-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 36px;
+}
+
+.gallery-more-wrap[hidden] {
+    display: none;
+}
+
+.gallery-more-btn.is-expanded i {
+    transform: rotate(180deg);
+}
+
+.gallery-more-btn:hover i {
+    transform: translateY(2px);
+}
+
+.gallery-more-btn.is-expanded:hover i {
+    transform: rotate(180deg) translateY(2px);
+}
+
+.lightbox-counter {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.lightbox-nav-btn[hidden] {
+    display: none;
+}
+
 /* --- LIGHTBOX MODAL --- */
 .lightbox-modal {
     position: fixed;
@@ -1809,7 +1852,27 @@ button {
     }
 
     .gallery-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .gallery-item {
+        height: 180px;
+    }
+
+    .gallery-overlay {
+        padding: 14px;
+    }
+
+    .gallery-caption {
+        font-size: 0.95rem;
+    }
+
+    .gallery-zoom-icon {
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
     }
 
     .concept-pillars {
@@ -1896,4 +1959,358 @@ button {
   .hotel-masthead small { font-size:.48rem; }
   .site-header:not(.menu-open) { width:0; height:0; border:0; background:transparent; box-shadow:none; overflow:visible; }
   .site-header:not(.menu-open) .brand,.site-header:not(.menu-open) .nav-actions,.site-header:not(.menu-open) .nav-menu { display:none; }
+}
+
+
+/* ==========================================================================
+   REFINAMENTO TIPOGRÁFICO — TEXTOS JUSTIFICADOS E MELHOR LEGIBILIDADE
+   ========================================================================== */
+
+/* Títulos com quebra de linha equilibrada (evita palavra sozinha na última linha) */
+h1, h2, h3, h4, h5,
+.section-title,
+.section-subtitle,
+.concept-quote-card blockquote {
+    text-wrap: balance;
+}
+
+/* Parágrafos em geral: evita "viúvas" e quebras feias */
+p {
+    text-wrap: pretty;
+    hanging-punctuation: first;
+}
+
+/* Textos corridos (blocos longos) — justificados com hifenização em pt-BR */
+.concept-text > p,
+.hero-description,
+.room-description,
+.amenity-card p,
+.academic-note p {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphenate-limit-chars: 7 3 3;
+    word-spacing: -0.01em;
+}
+
+/* Comprimento de linha confortável para leitura */
+.concept-text > p { max-width: 62ch; }
+.room-description  { max-width: 65ch; }
+
+/* Primeiro parágrafo do conceito com leve destaque editorial */
+.concept-text > p:first-of-type {
+    color: var(--text-primary);
+}
+
+/* Subtítulos centralizados das seções: largura controlada */
+.section-subtitle {
+    max-width: 58ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Textos curtos em cards estreitos ficam alinhados à esquerda (justificar criaria buracos) */
+.pillar-item p,
+.footer-desc {
+    text-align: left;
+    hyphens: manual;
+}
+
+/* Telas pequenas: mantém justificado, com hifenização mais agressiva
+   para reduzir espaços irregulares em colunas estreitas */
+@media (max-width: 600px) {
+    .concept-text > p,
+    .hero-description,
+    .room-description,
+    .amenity-card p,
+    .academic-note p {
+        text-align: justify;
+        hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphenate-limit-chars: 6 2 2;
+        word-spacing: -0.02em;
+    }
+}
+
+
+/* ==========================================================================
+   PÁGINA: GALERIA COMPLETA (galeria.html)
+   ========================================================================== */
+
+/* Link "Ver galeria completa" na página inicial */
+.gallery-full-link-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 36px;
+}
+
+.gp-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px clamp(14px, 3vw, 28px);
+    background: rgba(255, 254, 250, 0.72);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 10px 30px rgba(24, 51, 58, 0.08);
+    backdrop-filter: blur(22px) saturate(1.35);
+    -webkit-backdrop-filter: blur(22px) saturate(1.35);
+}
+
+.gp-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--ocean-deep);
+    min-width: 0;
+}
+
+.gp-brand img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.gp-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+    min-width: 0;
+}
+
+.gp-brand-text span {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    white-space: nowrap;
+}
+
+.gp-brand-text small {
+    margin-top: 3px;
+    color: var(--salt-terracotta);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    white-space: nowrap;
+}
+
+.gp-back {
+    padding: 10px 18px;
+    font-size: 0.88rem;
+    flex-shrink: 0;
+}
+
+.gp-back:hover i {
+    transform: translateX(-4px);
+}
+
+.gp-main {
+    padding-top: 56px;
+}
+
+.gp-main .section-header {
+    margin-bottom: 32px;
+}
+
+/* Filtros */
+.gp-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 36px;
+}
+
+.gp-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-subtle);
+}
+
+.gp-filter-btn small {
+    min-width: 22px;
+    padding: 1px 7px;
+    border-radius: var(--radius-pill);
+    background: rgba(28, 78, 84, 0.08);
+    font-size: 0.72rem;
+    text-align: center;
+}
+
+.gp-filter-btn:hover {
+    border-color: var(--salt-terracotta);
+    color: var(--salt-terracotta);
+}
+
+.gp-filter-btn.is-active {
+    background: var(--ocean-teal);
+    border-color: var(--ocean-teal);
+    color: #ffffff;
+}
+
+.gp-filter-btn.is-active small {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Mosaico (masonry) — fotos mantêm a proporção original, sem cortes */
+.gp-masonry {
+    columns: 3 300px;
+    column-gap: 18px;
+}
+
+.gp-item {
+    position: relative;
+    margin: 0 0 18px;
+    break-inside: avoid;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    background: #e2ddd3;
+    box-shadow: var(--shadow-subtle);
+    transition: var(--transition);
+    animation: fadeIn 0.5s ease both;
+}
+
+.gp-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+}
+
+.gp-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.gp-item:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.05);
+}
+
+.gp-caption {
+    position: absolute;
+    inset: auto 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 40px 18px 16px;
+    background: linear-gradient(to top, rgba(18, 40, 45, 0.85), transparent);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.gp-item:hover .gp-caption,
+.gp-item:focus-visible .gp-caption {
+    opacity: 1;
+}
+
+.gp-caption-title {
+    font-family: var(--font-serif);
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+.gp-item .gallery-zoom-icon {
+    top: 14px;
+    right: 14px;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.gp-item:hover .gallery-zoom-icon,
+.gp-item:focus-visible .gallery-zoom-icon {
+    opacity: 1;
+}
+
+.gp-empty {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 40px 0;
+}
+
+.gp-bottom-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+.gp-footer {
+    padding: 28px 20px;
+    text-align: center;
+    font-size: 0.82rem;
+    color: rgba(247, 244, 237, 0.6);
+    background: var(--bg-dark);
+}
+
+.gp-footer strong {
+    color: rgba(247, 244, 237, 0.9);
+}
+
+/* Telas sem mouse (celular/tablet): legenda sempre visível */
+@media (hover: none) {
+    .gp-caption {
+        opacity: 1;
+        padding: 30px 12px 10px;
+    }
+    .gp-item .gallery-zoom-icon {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .gp-masonry {
+        columns: 2;
+        column-gap: 10px;
+    }
+    .gp-item {
+        margin-bottom: 10px;
+        border-radius: var(--radius-sm);
+    }
+    .gp-caption-title {
+        font-size: 0.85rem;
+    }
+    .gp-caption .gallery-tag {
+        font-size: 0.6rem;
+    }
+    .gp-brand-text small {
+        display: none;
+    }
+    .gp-brand-text span {
+        font-size: 0.8rem;
+    }
+    .gp-back span {
+        display: none;
+    }
+    .gp-back {
+        padding: 10px 12px;
+    }
+    .gp-main {
+        padding-top: 36px;
+    }
+    .gp-filters {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 6px;
+        margin-bottom: 24px;
+        scrollbar-width: none;
+    }
+    .gp-filter-btn {
+        flex-shrink: 0;
+    }
 }

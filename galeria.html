@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#eee4d2">
+
+    <title>Galeria | Flor de Sal Hotel — Beach Resort &amp; Spa</title>
+    <meta name="description" content="Galeria completa de renders e perspectivas do projeto arquitetônico Flor de Sal Hotel, na Costa Branca potiguar.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Galeria | Flor de Sal Hotel">
+    <meta property="og:image" content="fotos/carrossel/carrossel-1.jpg">
+    <meta property="og:locale" content="pt_BR">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="gallery-page">
+
+    <!-- Barra superior -->
+    <header class="gp-topbar">
+        <a href="index.html" class="gp-brand" aria-label="Flor de Sal Hotel - Voltar ao início">
+            <img src="fotos/logos/HT-trim.png" alt="">
+            <span class="gp-brand-text">
+                <span>FLOR DE SAL HOTEL</span>
+                <small>BEACH RESORT &amp; SPA · COSTA BRANCA</small>
+            </span>
+        </a>
+        <a href="index.html" class="btn btn-secondary gp-back">
+            <i data-lucide="arrow-left"></i>
+            <span>Voltar ao site</span>
+        </a>
+    </header>
+
+    <main class="container gp-main">
+        <div class="section-header">
+            <span class="section-tag">Perspectivas do Projeto</span>
+            <h1 class="section-title">Galeria Completa</h1>
+            <p class="section-subtitle">
+                Renders e registros visuais do empreendimento arquitetônico Flor de Sal. Filtre por ambiente e clique em qualquer imagem para ampliar.
+            </p>
+        </div>
+
+        <!-- Filtros (gerados automaticamente a partir das categorias em js/fotos.js) -->
+        <div class="gp-filters" id="gp-filters" role="toolbar" aria-label="Filtrar fotos por categoria"></div>
+
+        <!-- Grade em mosaico (gerada automaticamente a partir de js/fotos.js) -->
+        <div class="gp-masonry" id="gp-masonry" aria-live="polite"></div>
+
+        <p class="gp-empty" id="gp-empty" hidden>Nenhuma foto nesta categoria ainda.</p>
+
+        <div class="gp-bottom-cta">
+            <a href="index.html#quartos" class="btn btn-primary">
+                <span>Conhecer as Acomodações</span>
+                <i data-lucide="arrow-right"></i>
+            </a>
+        </div>
+    </main>
+
+    <footer class="gp-footer">
+        Flor de Sal Hotel © 2026 — Projeto Acadêmico de Arquitetura &amp; Urbanismo • <strong>UFERSA</strong> · Trabalho Estudantil Sem Fins Comerciais
+    </footer>
+
+    <!-- Visualizador em tela cheia (mesmo estilo da página inicial) -->
+    <div class="lightbox-modal" id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de Imagens">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close" aria-label="Fechar visualizador">
+                <i data-lucide="x"></i>
+            </button>
+            <button class="lightbox-nav-btn lightbox-prev" id="lightbox-prev" aria-label="Imagem anterior">
+                <i data-lucide="chevron-left"></i>
+            </button>
+            <button class="lightbox-nav-btn lightbox-next" id="lightbox-next" aria-label="Próxima imagem">
+                <i data-lucide="chevron-right"></i>
+            </button>
+            <div class="lightbox-img-wrap">
+                <img src="" alt="" id="lightbox-image">
+            </div>
+            <div class="lightbox-info">
+                <h3 class="lightbox-title" id="lightbox-title"></h3>
+                <p class="lightbox-desc" id="lightbox-desc"></p>
+                <span class="lightbox-counter" id="lightbox-counter" aria-live="polite"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/fotos.js"></script>
+    <script src="js/galeria.js"></script>
+</body>
+</html>
