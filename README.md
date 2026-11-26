@@ -83,7 +83,7 @@ hotel_flor_de_sal/
 │   └── galeria.js          # Monta o mosaico, os filtros e o lightbox da galeria.html
 ├── fotos/
 │   ├── logos/              # Logotipos do hotel e de cada acomodação
-│   ├── carrossel/          # Imagens do carrossel principal e galeria
+│   ├── galeria/            # Renders das áreas comuns (WebP otimizado) — carrossel e galeria
 │   ├── quarto-salina/      # Registros visuais do Quarto Salina
 │   ├── quarto-maresia/     # Registros visuais do Quarto Maresia
 │   └── quarto-duna/        # Registros visuais do Quarto Duna
@@ -100,7 +100,7 @@ hotel_flor_de_sal/
 2. Abra `js/fotos.js` e acrescente uma linha na lista:
 
 ```js
-{ src: "fotos/galeria/restaurante-noite.jpg", titulo: "Restaurante à Noite", categoria: "Gastronomia", legenda: "Iluminação cênica no salão principal." },
+{ src: "fotos/galeria/restaurante-noite.webp", titulo: "Restaurante à Noite", categoria: "Gastronomia", legenda: "Iluminação cênica no salão principal." },
 ```
 
 - Uma **categoria nova** cria automaticamente um novo botão de filtro.
@@ -110,7 +110,8 @@ hotel_flor_de_sal/
 > [!IMPORTANT]
 > - **Nomes de arquivo:** use letras minúsculas, sem acentos e sem espaços (`quarto-duna-4.jpg`). No GitHub Pages, `Foto.JPG` e `foto.jpg` são arquivos **diferentes**.
 > - **Caminhos relativos:** escreva `fotos/...`, nunca `/fotos/...` (com barra no início o site quebra dentro do GitHub Pages).
-> - **Tamanho das imagens:** prefira ~1600–2000 px de largura e 300–600 KB (JPG ou WebP). Ferramenta gratuita: [squoosh.app](https://squoosh.app/).
+> - **Tamanho das imagens:** prefira ~1600–2000 px de largura e 300–600 KB (JPG ou WebP). Ferramenta gratuita: [squoosh.app](https://squoosh.app/). No Linux: `cwebp -q 82 foto.png -o foto.webp`.
+> - **Originais pesados:** guarde os PNG/PSD originais na pasta `originais/`, que é ignorada pelo Git e não vai para o site.
 
 Para trocar as fotos em destaque da **página inicial**, edite os blocos `gallery-item` da seção `#galeria` em `index.html`.
 

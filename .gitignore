@@ -5,6 +5,9 @@
 # --- Pasta privada do projeto (não versionar) ---
 naomexer/**
 
+# --- Originais pesados das fotos (o site usa as versões .webp otimizadas em fotos/) ---
+originais/
+
 # --- Build local do GitHub Pages (gerado pelo workflow) ---
 _site/
 

@@ -1794,6 +1794,23 @@ button {
         height: 320px;
     }
 
+    /* Com várias fotos no carrossel, os indicadores vão para a esquerda para não encostar nas setas */
+    .hero-indicators {
+        left: 16px;
+        right: auto;
+        bottom: 26px;
+        gap: 7px;
+    }
+
+    .hero-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .hero-dot.active {
+        width: 20px;
+    }
+
     .hero-card {
         margin-top: 16px;
         padding: 24px 20px;
